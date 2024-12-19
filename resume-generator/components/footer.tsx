@@ -7,7 +7,7 @@ export function Footer() {
     <motion.footer 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed bottom-0 w-full py-4 text-center text-sm text-gray-600 bg-gradient-to-t from-white via-white to-transparent"
+      className="fixed bottom-0 w-full py-4 text-center text-sm text-gray-600 bg-gradient-to-t from-white via-white to-transparent mt-10"
     >
       <motion.div
         whileHover={{ scale: 1.05 }}

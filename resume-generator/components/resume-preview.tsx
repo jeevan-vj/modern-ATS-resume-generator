@@ -41,22 +41,24 @@ export function ResumePreview({ data, template, onChange }: { data: ResumeData; 
 
   return (
     <div className="flex h-full flex-col">
+      <div className="flex items-center justify-end border-b bg-white p-4">
+        <Button onClick={downloadResume}>
+          <Download className="mr-2 h-4 w-4" />
+          Download Resume
+        </Button>
+      </div>
       <div className="flex-1 overflow-auto bg-white p-12 shadow-sm">
         <div ref={resumeRef} className="mx-auto max-w-3xl">
           {template.render(data, handleUpdate)}
         </div>
       </div>
-      <div className="flex items-center justify-between border-t bg-white p-4">
+      <div className="flex items-center border-t bg-white p-4">
         <div className="flex items-center gap-2">
           <Switch id="autoscale" />
           <label htmlFor="autoscale" className="text-sm">
             Autoscale
           </label>
         </div>
-        <Button onClick={downloadResume}>
-          <Download className="mr-2 h-4 w-4" />
-          Download Resume
-        </Button>
       </div>
     </div>
   )

@@ -52,3 +52,22 @@ export const metadata: Metadata = {
 };
 
 // ...rest of the existing code...
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+      >
+        <main className="flex-1 w-full flex flex-col items-center">
+          {children}
+        </main>
+        <Footer />
+      </body>
+    </html>
+  );
+}
