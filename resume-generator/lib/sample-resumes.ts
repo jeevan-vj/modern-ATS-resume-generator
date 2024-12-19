@@ -35,7 +35,14 @@ export const sampleResumes: ResumeData[] = [
         gpa: "3.8"
       }
     ],
-    skills: ["JavaScript", "React", "Node.js", "Python", "AWS", "Docker"]
+    skills: ["JavaScript", "React", "Node.js", "Python", "AWS", "Docker"],
+    customFields: [],
+    colorTheme: {
+      primary: "#2563EB",
+      secondary: "#FF00B8",
+      text: "#333333",
+      background: "#FFFFFF"
+    }
   },
   {
     personalInfo: {
@@ -78,7 +85,14 @@ export const sampleResumes: ResumeData[] = [
         gpa: "3.7"
       }
     ],
-    skills: ["Digital Marketing", "SEO", "Content Strategy", "Data Analysis", "Adobe Creative Suite"]
+    skills: ["Digital Marketing", "SEO", "Content Strategy", "Data Analysis", "Adobe Creative Suite"],
+    customFields: [],
+    colorTheme: {
+      primary: "#2563EB",
+      secondary: "#FF00B8",
+      text: "#333333",
+      background: "#FFFFFF"
+    }
   }
 ]
 
