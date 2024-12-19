@@ -8,7 +8,8 @@ interface EditableFieldProps {
   value: string
   onChange: (value: string) => void
   multiline?: boolean
-  className?: string
+  className?: string,
+  style?: React.CSSProperties
 }
 
 export function EditableField({ value, onChange, multiline = false, className = '' }: EditableFieldProps) {
