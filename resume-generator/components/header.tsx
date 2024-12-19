@@ -11,7 +11,7 @@ export function Header() {
           <span className="text-xl font-semibold">OpenResume</span>
         </Link>
         <nav className="flex items-center space-x-6">
-          <Link href="/builder" className="text-sm font-medium">
+          <Link href="/resume-builder" className="text-sm font-medium">
             Builder
           </Link>
           <Link href="/parser" className="text-sm font-medium">
