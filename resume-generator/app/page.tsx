@@ -23,7 +23,12 @@ const sampleData: ResumeData = {
   education: [],
   skills: [],
   customFields: [],
-  colorTheme: undefined
+  colorTheme: {
+    primary: "#2563EB",
+    secondary: "#FF00B8",
+    text: "#333",
+    background: "#fff"
+  }
 }
 
 const fadeInUp = {
