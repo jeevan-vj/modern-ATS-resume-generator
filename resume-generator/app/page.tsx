@@ -6,6 +6,25 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, CheckCircle, Sparkles, Star } from "lucide-react"
+import { ResumeData } from "@/lib/types"
+import { templates } from "@/lib/templates"
+
+// Sample resume data
+const sampleData: ResumeData = {
+  personalInfo: {
+    name: "John Doe",
+    email: "john@example.com",
+    phone: "",
+    website: "",
+    location: "",
+    objective: "Sample Resume"
+  },
+  workExperience: [],
+  education: [],
+  skills: [],
+  customFields: [],
+  colorTheme: undefined
+}
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -93,10 +112,14 @@ export default function Page() {
           </div>
         </section>
 
-        {/* Resume Preview */}
+        {/* Resume Preview Section */}
         <section className="container py-16">
           <div className="flex justify-center">
-            <ResumePreview />
+            <ResumePreview 
+              data={sampleData} 
+              template={templates[0]} 
+              onChange={(data) => console.log('Resume updated:', data)} 
+            />
           </div>
         </section>
       </main>
