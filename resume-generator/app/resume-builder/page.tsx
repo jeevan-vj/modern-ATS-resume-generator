@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useResumeStore } from '@/store/resumeStore'
 import { ResumeForm } from "@/components/resume-form"
 import { ResumePreview } from "@/components/resume-preview"
 import { TemplateSelector } from "@/components/template-selector"
@@ -35,6 +36,22 @@ const initialData: ResumeData = {
 export default function ResumeBuilder() {
   const [resumeData, setResumeData] = useState<ResumeData>(initialData)
   const [selectedTemplate, setSelectedTemplate] = useState<Template>(templates[0])
+
+  const parsedResume = useResumeStore(state => state.parsedResume)
+  const clearParsedResume = useResumeStore(state => state.clearParsedResume)
+
+  // Initialize form with parsed data if available
+  useEffect(() => {
+    if (parsedResume) {
+      // Update your form state with parsed resume data
+      // This depends on how your form is implemented
+      // Example:
+      setResumeData(parsedResume)
+      
+      // Clear the parsed resume from store after using it
+      clearParsedResume()
+    }
+  }, [parsedResume, clearParsedResume])
 
   const handleSampleSelect = (index: string) => {
     setResumeData({
