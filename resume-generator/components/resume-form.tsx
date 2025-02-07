@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Plus, GripVertical, Eye, ArrowUp, ArrowDown, X, Upload } from 'lucide-react'
 import type { ResumeData, WorkExperience, Education, ColorTheme, CustomField } from "@/lib/types"
+import { ObjectiveEnhancer } from './ObjectiveEnhancer'
 
 export function ResumeForm({ data, onChange }: { 
   data: ResumeData
@@ -124,16 +125,29 @@ export function ResumeForm({ data, onChange }: {
               })
             }
           />
-          <Textarea
-            placeholder="Objective"
-            value={data.personalInfo.objective}
-            onChange={(e) =>
-              onChange({
-                ...data,
-                personalInfo: { ...data.personalInfo, objective: e.target.value }
-              })
-            }
-          />
+          <div className="relative">
+            <Textarea
+              placeholder="Objective"
+              value={data.personalInfo.objective}
+              onChange={(e) =>
+                onChange({
+                  ...data,
+                  personalInfo: { ...data.personalInfo, objective: e.target.value }
+                })
+              }
+            />
+            <ObjectiveEnhancer
+              currentObjective={data.personalInfo.objective}
+              workExperience={data.workExperience}
+              education={data.education}
+              onSelect={(objective) =>
+                onChange({
+                  ...data,
+                  personalInfo: { ...data.personalInfo, objective }
+                })
+              }
+            />
+          </div>
           <div className="grid grid-cols-2 gap-2">
             <Input
               placeholder="Email"

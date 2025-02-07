@@ -100,7 +100,7 @@ export default function Page() {
         </section>
 
         {/* Upload Resume Section */}
-        <section className="container py-16">
+        {/* <section className="container py-16">
           <motion.div
             className="max-w-4xl mx-auto text-center space-y-8"
             initial={{ opacity: 0, y: 20 }}
@@ -120,7 +120,7 @@ export default function Page() {
               }} 
             />
           </motion.div>
-        </section>
+        </section> */}
 
         {/* Features Section */}
         <section className="container py-16">
