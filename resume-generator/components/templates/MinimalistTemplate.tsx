@@ -2,6 +2,11 @@ import React from 'react'
 import { ResumeData } from "@/lib/types"
 import { EditableField } from "@/components/editable-field"
 
+// Add this utility component for HTML rendering
+const HTMLContent = ({ html }: { html: string }) => {
+  return <div dangerouslySetInnerHTML={{ __html: html }} />
+}
+
 export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, value: string) => void) => (
   <div className="space-y-6 font-sans">
     <header className="text-center">
@@ -89,12 +94,10 @@ export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, v
                 onChange={(value) => onUpdate(`workExperience.${exp.id}.company`, value)}
                 className="text-sm text-gray-700"
               />
-              <EditableField
-                value={exp.description}
-                onChange={(value) => onUpdate(`workExperience.${exp.id}.description`, value)}
-                multiline
-                className="mt-2 text-sm text-gray-600"
-              />
+              {/* Replace the EditableField with HTMLContent for description */}
+              <div className="mt-2 text-sm text-gray-600 prose prose-sm max-w-none">
+                <HTMLContent html={exp.description} />
+              </div>
             </div>
           ))}
         </div>
