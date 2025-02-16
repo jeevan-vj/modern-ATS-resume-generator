@@ -3,6 +3,182 @@ import { ResumeData } from "./types"
 export const sampleResumes: ResumeData[] = [
   {
     personalInfo: {
+      name: "David Chen",
+      objective: "Lead Software Engineer with 10+ years of experience specializing in cloud-native architectures and technical leadership. Proven track record of mentoring engineering teams, driving technical excellence, and delivering scalable solutions using .NET, AWS, and modern development practices. Passionate about fostering inclusive team cultures and driving engineering best practices.",
+      email: "david.chen@email.com",
+      phone: "(555) 123-4567",
+      website: "github.com/davidchen-tech",
+      location: "Melbourne, Australia",
+      linkedin: "linkedin.com/in/davidchen-tech"
+    },
+    workExperience: [
+      {
+        id: "1",
+        company: "FinTech Solutions Ltd.",
+        jobTitle: "Technical Lead / Senior Software Engineer",
+        date: "2020 - Present",
+        description: `<ul>
+          <li>Led a cross-functional team of 8 engineers in developing and maintaining microservices architecture handling <strong>2M+ daily transactions</strong></li>
+          <li>Architected and implemented migration from monolith to microservices using .NET Core, reducing deployment time by <strong>70%</strong></li>
+          <li>Established CI/CD pipelines using GitHub Actions and AWS, achieving <strong>99.9% deployment success rate</strong></li>
+          <li>Mentored 12+ junior and mid-level developers through technical guidance and code reviews</li>
+          <li>Implemented comprehensive monitoring and observability using DataDog and OpenTelemetry</li>
+          <li>Drove adoption of container orchestration using Kubernetes, improving system reliability by <strong>40%</strong></li>
+        </ul>`,
+        projects: [
+          {
+            id: "p1",
+            name: "Payment Gateway Migration",
+            description: "Led the migration of legacy payment system to modern microservices architecture",
+            techStack: ["C#", ".NET 6", "Azure Service Bus", "Redis", "PostgreSQL", "Docker", "Kubernetes"],
+            role: "Tech Lead",
+            achievements: [
+              "Reduced payment processing latency by 65%",
+              "Improved system scalability to handle 3x transaction volume",
+              "Implemented real-time payment status tracking"
+            ],
+            duration: "8 months"
+          },
+          {
+            id: "p2",
+            name: "Developer Platform",
+            description: "Built internal developer platform for standardizing microservices development",
+            techStack: ["TypeScript", "React", "Node.js", "GraphQL", "Docker", "AWS ECS"],
+            role: "Architecture Lead",
+            achievements: [
+              "Reduced new service bootstrapping time from 2 weeks to 2 days",
+              "Implemented automated compliance checks",
+              "Created comprehensive documentation and tutorials"
+            ],
+            duration: "6 months",
+            url: "github.com/fintech/dev-platform"
+          }
+        ],
+        techStack: [
+          {
+            category: "Backend",
+            technologies: [
+              {
+                name: "C# / .NET Core",
+                proficiency: "Expert",
+                yearsOfExperience: 8
+              },
+              {
+                name: "Node.js",
+                proficiency: "Advanced",
+                yearsOfExperience: 5
+              }
+            ]
+          },
+          {
+            category: "Cloud & DevOps",
+            technologies: [
+              {
+                name: "AWS",
+                proficiency: "Expert",
+                yearsOfExperience: 6
+              },
+              {
+                name: "Kubernetes",
+                proficiency: "Advanced",
+                yearsOfExperience: 4
+              }
+            ]
+          }
+        ],
+        teamSize: "8 engineers (2 senior, 4 mid-level, 2 junior)",
+        responsibilities: [
+          "Technical architecture and design decisions",
+          "Code review and mentoring",
+          "Sprint planning and estimation",
+          "Stakeholder communication",
+          "Performance optimization"
+        ],
+        companyDetails: {
+          industry: "FinTech",
+          size: "Medium (200-500)",
+          type: "Product"
+        },
+        achievements: [
+          "Promoted to Tech Lead within 1 year",
+          "Reduced production incidents by 70%",
+          "Implemented company-wide coding standards"
+        ],
+        reportingTo: "VP of Engineering",
+        keywords: [
+          "microservices",
+          "cloud architecture",
+          "team leadership",
+          "agile",
+          "devops",
+          "financial systems"
+        ]
+      },
+      {
+        id: "2",
+        company: "Cloud Systems Inc.",
+        jobTitle: "Senior Software Engineer",
+        date: "2017 - 2020",
+        description: `<ul>
+          <li>Developed and maintained microservices using <strong>C# .NET Core</strong> and AWS services (Lambda, ECS, DynamoDB)</li>
+          <li>Led migration to TypeScript and React for front-end applications, improving code quality by <strong>45%</strong></li>
+          <li>Implemented automated testing strategy achieving <strong>90% code coverage</strong> across services</li>
+          <li>Mentored team of 5 developers in AWS best practices and cloud-native development</li>
+          <li>Established engineering excellence guidelines and documentation practices</li>
+        </ul>`
+      },
+      {
+        id: "3",
+        company: "Digital Solutions Corp",
+        jobTitle: "Full Stack Developer",
+        date: "2014 - 2017",
+        description: "• Built and maintained scalable web applications using .NET Framework and Angular\n• Implemented continuous integration practices reducing build times by 50%\n• Collaborated with product teams to deliver features impacting 100K+ users\n• Conducted technical interviews and onboarding for new team members"
+      }
+    ],
+    education: [
+      {
+        id: "1",
+        school: "University of Melbourne",
+        degree: "M.S. in Software Engineering",
+        date: "2012 - 2014",
+        gpa: "3.9",
+        achievements: "Research focus on Distributed Systems and Cloud Computing"
+      }
+    ],
+    skills: [
+      "Languages & Frameworks: C#, .NET Core, TypeScript, React",
+      "Cloud & Infrastructure: AWS (Certified Solutions Architect), Docker, Kubernetes",
+      "DevOps: CI/CD, GitHub Actions, Azure DevOps, Terraform",
+      "Monitoring: DataDog, OpenTelemetry, ELK Stack",
+      "Architecture: Microservices, Event-Driven Design, Domain-Driven Design",
+      "Leadership: Team Mentoring, Technical Planning, Agile Methodologies"
+    ],
+    certifications: [
+      "AWS Certified Solutions Architect - Professional",
+      "Microsoft Certified: Azure Solutions Architect",
+      "Certified Kubernetes Administrator (CKA)"
+    ],
+    customFields: [
+      {
+        id: "1",
+        title: "Technical Leadership",
+        content: "• Led architectural decisions for cloud-native applications serving millions of users\n• Established engineering excellence programs and mentorship initiatives\n• Active contributor to technical blog and engineering community"
+      },
+      {
+        id: "2",
+        title: "Community Involvement",
+        content: "• Regular speaker at .NET and Cloud Computing meetups\n• Mentor in Women in Tech program\n• Open source contributor to various .NET and React projects"
+      }
+    ],
+    colorTheme: {
+      primary: "#0891B2",
+      secondary: "#6366F1",
+      text: "#1F2937",
+      background: "#FFFFFF"
+    }
+  },
+  {
+    personalInfo: {
       name: "Alex Johnson",
       objective: "Senior Software Engineer with 8+ years of experience specializing in cloud architecture, distributed systems, and full-stack development. Proven track record of leading high-performance engineering teams and delivering scalable solutions using modern technologies.",
       email: "alex.johnson@email.com",
@@ -17,14 +193,24 @@ export const sampleResumes: ResumeData[] = [
         company: "Tech Innovations Inc.",
         jobTitle: "Senior Software Engineer",
         date: "2018 - Present",
-        description: "• Architected and implemented microservices-based architecture reducing system latency by 40%\n• Led a team of 6 engineers in developing cloud-native applications using AWS, Kubernetes, and Docker\n• Implemented automated CI/CD pipelines reducing deployment time by 60%\n• Mentored 8 junior developers in best practices and modern development methodologies"
+        description: `<ul>
+          <li>Architected and implemented microservices-based architecture reducing system latency by <strong>40%</strong></li>
+          <li>Led a team of 6 engineers in developing cloud-native applications using <strong>AWS, Kubernetes, and Docker</strong></li>
+          <li>Implemented automated CI/CD pipelines reducing deployment time by <strong>60%</strong></li>
+          <li>Mentored 8 junior developers in best practices and modern development methodologies</li>
+        </ul>`
       },
       {
         id: "2",
         company: "StartUp Solutions",
         jobTitle: "Full Stack Developer",
         date: "2015 - 2018",
-        description: "• Developed RESTful APIs serving 1M+ daily requests using Node.js and Express\n• Built responsive web applications using React, Redux, and TypeScript\n• Optimized PostgreSQL database queries improving application performance by 35%\n• Implemented automated testing achieving 90% code coverage"
+        description: `<ul>
+          <li>Developed RESTful APIs serving <strong>1M+ daily requests</strong> using Node.js and Express</li>
+          <li>Built responsive web applications using <strong>React, Redux, and TypeScript</strong></li>
+          <li>Optimized PostgreSQL database queries improving application performance by <strong>35%</strong></li>
+          <li>Implemented automated testing achieving <strong>90% code coverage</strong></li>
+        </ul>`
       }
     ],
     education: [
@@ -173,6 +359,242 @@ export const sampleResumes: ResumeData[] = [
       secondary: "#6366F1",
       text: "#1F2937",
       background: "#FFFFFF"
+    }
+  },
+  {
+    "personalInfo": {
+      "name": "Jeevan Wijerathna",
+      "objective": "AWS, Azure, and Sitecore Certified Developer with over 10 years of experience in software development. Skilled in .NET technologies, cloud-native architectures, and backend development. Passionate about delivering scalable, maintainable solutions while adhering to best practices like Domain-Driven Design, Clean Code, and Test-Driven Development.",
+      "email": "Jeevan90wijerathna@gmail.com",
+      "phone": "+64 22 67 33 146",
+      "website": "Iamjeevan.com",
+      "location": "Auckland, New Zealand",
+      "linkedin": "www.linkedin.com/in/jeevanwijerathna"
+    },
+    "workExperience": [
+      {
+        "id": "1",
+        "company": "Datacom, New Zealand",
+        "jobTitle": "Technical Lead",
+        "date": "2023 - Present",
+        "description": "<ul><li>Designed and reviewed new features with architects and team members for critical business applications.</li><li>Implemented scalable backend solutions using .NET, C#, and Azure technologies.</li><li>Enhanced application performance and optimized Azure costs by identifying and addressing bottlenecks.</li><li>Led backlog grooming, prioritization, and technical discussions with business users to deliver robust solutions.</li><li>Modernized legacy applications by transitioning to cloud-native, decoupled architectures.</li></ul>",
+        "projects": [
+          {
+            "id": "p1",
+            "name": "PGDB Application Portal",
+            "description": "Developed a portal for managing licenses and certifications for NZ practitioners.",
+            "techStack": [".NET", "C#", "WEB-API", "Identity Server", "React", "Redux", "Azure"],
+            "role": "Technical Lead",
+            "achievements": [
+              "Implemented proactive application monitoring to ensure business continuity.",
+              "Delivered scalable architectural solutions for critical business functions."
+            ],
+            "duration": "Ongoing"
+          },
+          {
+            "id": "p2",
+            "name": "Southern Cross Applications",
+            "description": "Supported and modernized various business-critical applications.",
+            "techStack": [".NET", "C#", "WEB-API", "React", "Redux", "Azure", "Angular", "Sitecore"],
+            "role": "Technical Lead",
+            "achievements": [
+              "Ensured business continuity by resolving P1/P2 issues promptly.",
+              "Migrated legacy applications to microservices architecture."
+            ],
+            "duration": "Ongoing"
+          },
+          {
+            "id": "p1",
+            "name": "Dairy NZ",
+            "description": "Migrate in-app authentication to Azure Entra ID and Azure B2C.",
+            "techStack": ["Java", "Azure", "SQL Server", "Azure DevOps"],
+            "role": "Architect and Developer",
+            "achievements": [
+              "Designed and architected user migration to Azure Entra ID and Azure B2C.",
+              "Built CI/CD pipeline for legacy Java applications in Azure DevOps."
+            ]
+          },
+          {
+            "id": "p2",
+            "name": "Ballance Agriculture",
+            "description": "Support various line-of-business applications in Ballance Agriculture.",
+            "techStack": [".NET", "Azure", "React", "Angular", "SQL Server"],
+            "role": "Architect and Developer",
+            "achievements": [
+              "Designed and architected new application features.",
+              "Migrated Bamboo pipeline to Bitbucket pipelines."
+            ]
+          },
+          {
+            "id": "p3",
+            "name": "CSN",
+            "description": "Support CSN legacy (VB.NET and C#) applications, ensuring business continuity and optimizing databases.",
+            "techStack": [".NET", "C#", "WEB-API", "Identity Server", "React", "Redux", "Azure", "Angular", "Worker-Services", "Powershell", "Sitecore", "Azure Pipelines", "GitHub Actions"],
+            "role": "Developer and Support Engineer",
+            "achievements": [
+              "Designed and reviewed new features with architects and team.",
+              "Ensured business continuity by supporting urgent user requests."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "company": "Kinesso, Malaysia",
+        "jobTitle": "Senior Software Engineer",
+        "date": "2020 - 2022",
+        "description": "<ul><li>Designed and implemented modernized legacy applications using microservices architecture.</li><li>Developed GRPC services for inter-process communication and optimized database performance.</li><li>Automated deployments using Jenkins and introduced DevOps practices for database development.</li><li>Integrated various data sources like Snowflake, Redshift, and Athena for analytics tools.</li><li>Monitored application performance using DataDog and implemented CI/CD pipelines.</li></ul>",
+        "projects": [
+          {
+            "id": "p3",
+            "name": "Magnifiq",
+            "description": "Developed a business intelligence analytics tool with custom ETL and reporting capabilities.",
+            "techStack": [".NET", "GRPC", "SQL Server", "AWS", "Docker", "Jenkins", "Snowflake"],
+            "role": "Senior Software Engineer",
+            "achievements": [
+              "Streamlined database development with Flyway for version control.",
+              "Reduced manual deployment efforts by automating processes."
+            ],
+            "duration": "2 years"
+          },
+          {
+            "id": "p4",
+            "name": "Apollo ETL Platform",
+            "description": "Built an ETL orchestration platform using Dagster and developed a dashboard UI.",
+            "techStack": [".NET", "Web-API", "Dagster", "Python", "AWS", "Angular"],
+            "role": "Senior Software Engineer",
+            "achievements": [
+              "Migrated legacy ETL processes to a modern platform.",
+              "Improved ETL performance and scalability."
+            ],
+            "duration": "1 year"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "company": "Sitecore, Malaysia",
+        "jobTitle": "Software Engineer",
+        "date": "2017 - 2022",
+        "description": "<ul><li>Developed Sitecore platform modules to enhance CMS functionality with Azure Storage and CDN support.</li><li>Implemented backend services using WEB-API and C#, and developed front-end applications using Angular.</li><li>Set up CI pipelines and automated deployments using PowerShell and TeamCity.</li><li>Participated in R&D, sprint planning, and cross-functional team collaboration.</li></ul>",
+        "projects": [
+          {
+            "id": "p5",
+            "name": "Sitecore Azure Marketplace",
+            "description": "Enabled users to deploy Sitecore in Azure through a marketplace solution.",
+            "techStack": ["Azure", "WEB-API", "Angular", "C#", "PowerShell"],
+            "role": "Software Engineer",
+            "achievements": [
+              "Developed end-to-end tests using BDD with SpecFlow.",
+              "Streamlined deployment processes with CI automation."
+            ],
+            "duration": "2 years"
+          },
+          {
+            "id": "p6",
+            "name": "Sitecore Azure Toolkit",
+            "description": "Developed tools for deploying Sitecore in Azure environments.",
+            "techStack": ["Azure", "PowerShell", "TeamCity"],
+            "role": "Software Engineer",
+            "achievements": [
+              "Implemented unit tests using Pester.",
+              "Collaborated with architects to design scalable solutions."
+            ],
+            "duration": "1 year"
+          }
+        ]
+      },
+      {
+    "id": "1",
+    "company": "CMS Pvt Ltd, Colombo, Sri Lanka",
+    "jobTitle": "Software Engineer",
+    "date": "2015 - 2017",
+    "description": "<ul><li>Developed and maintained scalable e-commerce solutions for European markets.</li><li>Modernized legacy systems and implemented responsive front-end designs.</li><li>Optimized database performance and implemented caching mechanisms.</li></ul>",
+    "projects": [
+      {
+        "id": "p1",
+        "name": "Redcorp E-Commerce Store",
+        "description": "B2B E-Commerce store in Europe.",
+        "techStack": ["ASP.NET MVC", "SQL Server", "Knockout.js", "HTML5", "SCSS", "Solr"],
+        "role": "Software Engineer",
+        "achievements": [
+          "Designed the E-Commerce website.",
+          "Migrated old ASP.NET Web Form website to ASP.NET MVC5.",
+          "Implemented service layer using WEB-API.",
+          "Designed and implemented SQL Server database.",
+          "Updated data sync feature from different content databases to the main E-Commerce database.",
+          "Implemented caching mechanism and search functionality using Solr.",
+          "Developed a responsive front-end using Bootstrap and Knockout.js."
+        ],
+        "duration": "2 years"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "company": "Bileeta Pvt Ltd, Sri Lanka",
+    "jobTitle": "Software Engineer",
+    "date": "February 2013 - December 2014",
+    "description": "<ul><li>Contributed to the development of an award-winning cloud ERP solution.</li><li>Designed and implemented backend services and real-time features.</li><li>Optimized database performance and implemented stored procedures.</li></ul>",
+    "projects": [
+      {
+        "id": "p2",
+        "name": "Entution ERP",
+        "description": "Award-winning journey-based cloud ERP solution.",
+        "techStack": ["SQL Server", "ASP.NET", "JavaScript", "jQuery", "HTML", "WEB-API", "SignalR", "Highcharts", "JSON", "SQL CLR"],
+        "role": "Software Engineer",
+        "achievements": [
+          "Designed the backend architecture.",
+          "Implemented backend services using WEB-API.",
+          "Developed and optimized database and stored procedures.",
+          "Implemented real-time push notifications using SignalR."
+        ],
+        "duration": "1 year 10 months"
+      }
+    ]
+  }
+    ],
+    "education": [
+      {
+        "id": "1",
+        "school": "National School of Business Management, Sri Lanka",
+        "degree": "Bachelor of Science in Management Information Systems",
+        "date": "2014",
+        "achievements": "Graduated with a focus on software development and database design."
+      }
+    ],
+    "skills": [
+      "Languages & Frameworks: C#, .NET Core, ASP.NET, React, Angular, JavaScript",
+      "Cloud & Infrastructure: Azure, AWS, Docker, Kubernetes",
+      "DevOps: Azure DevOps, GitHub Actions, Jenkins, TeamCity",
+      "Testing: XUnit, SpecFlow, Pester",
+      "Architecture: Microservices, Domain-Driven Design, Clean Code",
+      "Other: PowerShell, SQL Server, Sitecore"
+    ],
+    "certifications": [
+      "AWS Certified Solution Architect Associate",
+      "AWS Certified Developer",
+      "Azure Certified Developer",
+      "Sitecore 9 Certified Developer",
+      "SAFe 4.0 Practitioner"
+    ],
+    "customFields": [
+      {
+        "id": "1",
+        "title": "Technical Leadership",
+        "content": "• Led architectural decisions for cloud-native applications.\n• Mentored junior developers and promoted engineering best practices.\n• Delivered scalable solutions for critical business applications."
+      },
+      {
+        "id": "2",
+        "title": "Community Involvement",
+        "content": "• Active contributor to technical blogs and forums.\n• Participated in knowledge-sharing sessions within teams."
+      }
+    ],
+    "colorTheme": {
+      "primary": "#1E40AF",
+      "secondary": "#2563EB",
+      "text": "#1F2937",
+      "background": "#FFFFFF"
     }
   }
 ]

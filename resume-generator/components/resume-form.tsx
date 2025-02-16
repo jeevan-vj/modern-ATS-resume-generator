@@ -8,6 +8,7 @@ import { Plus, GripVertical, Eye, ArrowUp, ArrowDown, X, Upload } from 'lucide-r
 import type { ResumeData, WorkExperience, Education, ColorTheme, CustomField } from "@/lib/types"
 import { ObjectiveEnhancer } from './ObjectiveEnhancer'
 import { RichTextEditor } from './RichTextEditor'
+import { WorkExperienceEnhancer } from './WorkExperienceEnhancer'
 
 export function ResumeForm({ data, onChange }: { 
   data: ResumeData
@@ -292,6 +293,14 @@ export function ResumeForm({ data, onChange }: {
             <RichTextEditor
               content={exp.description}
               onChange={(content) => updateWorkExperience(index, { description: content })}
+            />
+            <WorkExperienceEnhancer
+              currentDescription={exp.description}
+              jobTitle={exp.jobTitle}
+              company={exp.company}
+              onSelect={(enhancedDescription) =>
+                updateWorkExperience(index, { description: enhancedDescription })
+              }
             />
           </div>
         ))}

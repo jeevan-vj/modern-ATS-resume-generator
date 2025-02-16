@@ -73,26 +73,110 @@ export const ModernTemplate = (data: ResumeData, onUpdate: (field: string, value
     {data.workExperience.length > 0 && (
       <section>
         <h2 className="mb-4 text-xl font-semibold text-gray-700">Professional Experience</h2>
-        <div className="space-y-6">
+        <div className="space-y-8">
           {data.workExperience.map((exp) => (
             <div key={exp.id} className="border-l-2 border-gray-200 pl-4">
-              <EditableField
-                value={exp.jobTitle}
-                onChange={(value) => onUpdate(`workExperience.${exp.id}.jobTitle`, value)}
-                className="font-semibold text-gray-800"
-              />
-              <EditableField
-                value={`${exp.company} | ${exp.date}`}
-                onChange={(value) => {
-                  const [company, date] = value.split('|')
-                  onUpdate(`workExperience.${exp.id}.company`, company.trim())
-                  onUpdate(`workExperience.${exp.id}.date`, date.trim())
-                }}
-                className="text-sm text-gray-600"
-              />
+              <div className="mb-4">
+                <EditableField
+                  value={exp.jobTitle}
+                  onChange={(value) => onUpdate(`workExperience.${exp.id}.jobTitle`, value)}
+                  className="font-semibold text-gray-800"
+                />
+                <EditableField
+                  value={`${exp.company} | ${exp.date}`}
+                  onChange={(value) => {
+                    const [company, date] = value.split('|')
+                    onUpdate(`workExperience.${exp.id}.company`, company.trim())
+                    onUpdate(`workExperience.${exp.id}.date`, date.trim())
+                  }}
+                  className="text-sm text-gray-600"
+                />
+                {exp.companyDetails && (
+                  <div className="mt-1 text-sm text-gray-500">
+                    {exp.companyDetails.type} Company • {exp.companyDetails.size} • {exp.companyDetails.industry}
+                  </div>
+                )}
+              </div>
+
               <div className="mt-2 text-sm text-gray-600 prose prose-sm max-w-none">
                 <HTMLContent html={exp.description} />
               </div>
+
+              {exp.projects && exp.projects.length > 0 && (
+                <div className="mt-4">
+                  <h4 className="text-sm font-semibold text-gray-700 mb-2">Key Projects</h4>
+                  <div className="space-y-4">
+                    {exp.projects.map((project) => (
+                      <div key={project.id} className="bg-gray-50 rounded-md p-3">
+                        <div className="flex justify-between items-start">
+                          <h5 className="font-medium text-gray-800">{project.name}</h5>
+                          <span className="text-xs text-gray-500">{project.duration}</span>
+                        </div>
+                        <p className="text-sm text-gray-600 mt-1">{project.description}</p>
+                        <div className="mt-2">
+                          <div className="flex flex-wrap gap-1">
+                            {project.techStack.map((tech, index) => (
+                              <span
+                                key={index}
+                                className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <ul className="mt-2 text-sm text-gray-600 list-disc list-inside">
+                          {project.achievements.map((achievement, index) => (
+                            <li key={index}>{achievement}</li>
+                          ))}
+                        </ul>
+                        {project.url && (
+                          <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-blue-600 hover:underline mt-2 inline-block"
+                          >
+                            View Project →
+                          </a>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {exp.techStack && exp.techStack.length > 0 && (
+                <div className="mt-4">
+                  <h4 className="text-sm font-semibold text-gray-700 mb-2">Technologies Used</h4>
+                  <div className="space-y-2">
+                    {exp.techStack.map((stack, index) => (
+                      <div key={index}>
+                        <h5 className="text-xs font-medium text-gray-600">{stack.category}</h5>
+                        <div className="flex flex-wrap gap-2 mt-1">
+                          {stack.technologies.map((tech, techIndex) => (
+                            <div
+                              key={techIndex}
+                              className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-gray-100"
+                              title={`${tech.yearsOfExperience} years experience`}
+                            >
+                              <span className="font-medium">{tech.name}</span>
+                              <span className="ml-1 text-gray-500">•</span>
+                              <span className="ml-1 text-gray-500">{tech.proficiency}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {exp.teamSize && (
+                <div className="mt-4 text-sm text-gray-600">
+                  <strong>Team Size:</strong> {exp.teamSize}
+                </div>
+              )}
             </div>
           ))}
         </div>
