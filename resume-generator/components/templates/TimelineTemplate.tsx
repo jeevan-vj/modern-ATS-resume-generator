@@ -2,6 +2,10 @@ import React from 'react'
 import { ResumeData } from "@/lib/types"
 import { EditableField } from "@/components/editable-field"
 
+const HTMLContent = ({ html }: { html: string }) => {
+  return <div dangerouslySetInnerHTML={{ __html: html }} />
+}
+
 export const TimelineTemplate = (data: ResumeData, onUpdate: (field: string, value: string) => void) => (
   <div className="space-y-6 font-sans" style={{ color: data.colorTheme.text, backgroundColor: data.colorTheme.background }}>
     <header className="flex items-center justify-between border-b-2 pb-4" style={{ borderColor: data.colorTheme.primary }}>
@@ -78,8 +82,8 @@ export const TimelineTemplate = (data: ResumeData, onUpdate: (field: string, val
       <section>
         <h2 className="text-xl font-semibold mb-4" style={{ color: data.colorTheme.secondary }}>Work Experience</h2>
         <div className="space-y-6">
-          {data.workExperience.map((exp, index) => (
-            <div key={exp.id} className="flex">
+          {data.workExperience.map((exp) => (
+            <div key={exp.id} className="relative pl-8 before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:bg-gray-200">
               <div className="w-1/4 pr-4 text-right">
                 <EditableField
                   value={exp.date}
@@ -99,12 +103,9 @@ export const TimelineTemplate = (data: ResumeData, onUpdate: (field: string, val
                   className="text-sm"
                   style={{ color: data.colorTheme.primary }}
                 />
-                <EditableField
-                  value={exp.description}
-                  onChange={(value) => onUpdate(`workExperience.${exp.id}.description`, value)}
-                  multiline
-                  className="mt-2 text-sm"
-                />
+                <div className="mt-2 text-sm text-gray-600 prose prose-sm max-w-none">
+                  <HTMLContent html={exp.description} />
+                </div>
               </div>
             </div>
           ))}

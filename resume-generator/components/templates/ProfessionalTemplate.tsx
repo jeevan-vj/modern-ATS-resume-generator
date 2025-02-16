@@ -2,6 +2,10 @@ import React from 'react'
 import { ResumeData } from "@/lib/types"
 import { EditableField } from "@/components/editable-field"
 
+const HTMLContent = ({ html }: { html: string }) => {
+  return <div dangerouslySetInnerHTML={{ __html: html }} />
+}
+
 export const ProfessionalTemplate = (data: ResumeData, onUpdate: (field: string, value: string) => void) => (
   <div className="space-y-6 font-serif">
     <header className="border-b-2 border-gray-300 pb-4">
@@ -86,12 +90,9 @@ export const ProfessionalTemplate = (data: ResumeData, onUpdate: (field: string,
                 onChange={(value) => onUpdate(`workExperience.${exp.id}.date`, value)}
                 className="text-sm text-gray-600"
               />
-              <EditableField
-                value={exp.description}
-                onChange={(value) => onUpdate(`workExperience.${exp.id}.description`, value)}
-                multiline
-                className="mt-2 text-sm text-gray-700"
-              />
+              <div className="mt-2 text-sm leading-relaxed prose prose-sm max-w-none">
+                <HTMLContent html={exp.description} />
+              </div>
             </div>
           ))}
         </div>

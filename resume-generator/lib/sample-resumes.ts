@@ -4,11 +4,12 @@ export const sampleResumes: ResumeData[] = [
   {
     personalInfo: {
       name: "Alex Johnson",
-      objective: "Experienced software engineer seeking to leverage my skills in full-stack development to contribute to innovative projects.",
+      objective: "Senior Software Engineer with 8+ years of experience specializing in cloud architecture, distributed systems, and full-stack development. Proven track record of leading high-performance engineering teams and delivering scalable solutions using modern technologies.",
       email: "alex.johnson@email.com",
       phone: "(555) 123-4567",
-      website: "www.alexjohnson.dev",
-      location: "San Francisco, CA"
+      website: "github.com/alexjohnson",
+      location: "San Francisco, CA",
+      linkedin: "linkedin.com/in/alexjohnson"
     },
     workExperience: [
       {
@@ -16,14 +17,14 @@ export const sampleResumes: ResumeData[] = [
         company: "Tech Innovations Inc.",
         jobTitle: "Senior Software Engineer",
         date: "2018 - Present",
-        description: "Lead development of cloud-based applications, mentored junior developers, and implemented CI/CD pipelines."
+        description: "• Architected and implemented microservices-based architecture reducing system latency by 40%\n• Led a team of 6 engineers in developing cloud-native applications using AWS, Kubernetes, and Docker\n• Implemented automated CI/CD pipelines reducing deployment time by 60%\n• Mentored 8 junior developers in best practices and modern development methodologies"
       },
       {
         id: "2",
         company: "StartUp Solutions",
         jobTitle: "Full Stack Developer",
         date: "2015 - 2018",
-        description: "Developed and maintained multiple web applications using React, Node.js, and PostgreSQL."
+        description: "• Developed RESTful APIs serving 1M+ daily requests using Node.js and Express\n• Built responsive web applications using React, Redux, and TypeScript\n• Optimized PostgreSQL database queries improving application performance by 35%\n• Implemented automated testing achieving 90% code coverage"
       }
     ],
     education: [
@@ -32,15 +33,33 @@ export const sampleResumes: ResumeData[] = [
         school: "University of California, Berkeley",
         degree: "B.S. in Computer Science",
         date: "2011 - 2015",
-        gpa: "3.8"
+        gpa: "3.8",
+        achievements: "Data Structures Teaching Assistant, ACM Programming Team"
       }
     ],
-    skills: ["JavaScript", "React", "Node.js", "Python", "AWS", "Docker"],
-    customFields: [],
+    skills: [
+      "Languages: JavaScript, TypeScript, Python, Java, SQL",
+      "Frontend: React, Redux, Vue.js, HTML5, CSS3, Webpack",
+      "Backend: Node.js, Express, Django, Spring Boot",
+      "Cloud: AWS (EC2, S3, Lambda), Docker, Kubernetes",
+      "Databases: PostgreSQL, MongoDB, Redis",
+      "Tools: Git, Jenkins, Jest, CircleCI"
+    ],
+    certifications: [
+      "AWS Certified Solutions Architect",
+      "Google Cloud Professional Developer"
+    ],
+    customFields: [
+      {
+        id: "1",
+        title: "Projects",
+        content: "• Open-source Kubernetes operator for automated database scaling (2.5k+ GitHub stars)\n• Real-time data visualization dashboard using D3.js and WebSocket"
+      }
+    ],
     colorTheme: {
       primary: "#2563EB",
-      secondary: "#FF00B8",
-      text: "#333333",
+      secondary: "#0EA5E9",
+      text: "#1F2937",
       background: "#FFFFFF"
     }
   },
@@ -91,6 +110,68 @@ export const sampleResumes: ResumeData[] = [
       primary: "#2563EB",
       secondary: "#FF00B8",
       text: "#333333",
+      background: "#FFFFFF"
+    }
+  },
+  {
+    personalInfo: {
+      name: "Sarah Martinez",
+      objective: "Full Stack Software Engineer with 5+ years of experience in building scalable web applications and mobile-first solutions. Passionate about clean code, performance optimization, and creating exceptional user experiences.",
+      email: "sarah.martinez@email.com",
+      phone: "(555) 234-5678",
+      website: "github.com/smartinez",
+      location: "Austin, TX",
+      linkedin: "linkedin.com/in/sarahmartinez"
+    },
+    workExperience: [
+      {
+        id: "1",
+        company: "Digital Solutions Corp",
+        jobTitle: "Full Stack Engineer",
+        date: "2020 - Present",
+        description: "• Developed and maintained microservices handling 500k+ daily users using Node.js and Go\n• Implemented responsive UI components with React and Material-UI reducing load time by 45%\n• Created mobile-first design system used across 12 different projects\n• Led migration from monolith to microservices architecture"
+      },
+      {
+        id: "2",
+        company: "TechStart Inc",
+        jobTitle: "Software Developer",
+        date: "2018 - 2020",
+        description: "• Built RESTful APIs using Express.js and MongoDB serving 200k+ daily requests\n• Implemented real-time features using WebSocket and Redux-Saga\n• Reduced application bundle size by 60% through code splitting and lazy loading\n• Collaborated with UX team to implement accessible components following WCAG guidelines"
+      }
+    ],
+    education: [
+      {
+        id: "1",
+        school: "Georgia Institute of Technology",
+        degree: "M.S. in Computer Science",
+        date: "2016 - 2018",
+        gpa: "3.9",
+        achievements: "Machine Learning Research Assistant"
+      }
+    ],
+    skills: [
+      "Languages: JavaScript, TypeScript, Go, Python",
+      "Frontend: React, Next.js, Redux, Tailwind CSS",
+      "Backend: Node.js, Express, GraphQL, REST",
+      "Cloud: GCP, AWS, Docker, Kubernetes",
+      "Databases: MongoDB, PostgreSQL, ElasticSearch",
+      "Testing: Jest, Cypress, React Testing Library"
+    ],
+    certifications: [
+      "MongoDB Certified Developer",
+      "GCP Professional Cloud Developer"
+    ],
+    customFields: [
+      {
+        id: "1",
+        title: "Open Source",
+        content: "• Created React component library with 1.5k+ npm downloads\n• Contributor to Next.js and Material-UI"
+      }
+    ],
+    colorTheme: {
+      primary: "#0891B2",
+      secondary: "#6366F1",
+      text: "#1F2937",
       background: "#FFFFFF"
     }
   }
