@@ -20,7 +20,7 @@ export interface WorkExperience {
   company: string
   jobTitle: string
   date: string
-  description: string
+  description: string // This will now contain HTML content
 }
 
 export interface Education {

@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Plus, GripVertical, Eye, ArrowUp, ArrowDown, X, Upload } from 'lucide-react'
 import type { ResumeData, WorkExperience, Education, ColorTheme, CustomField } from "@/lib/types"
 import { ObjectiveEnhancer } from './ObjectiveEnhancer'
+import { RichTextEditor } from './RichTextEditor'
 
 export function ResumeForm({ data, onChange }: { 
   data: ResumeData
@@ -288,10 +289,9 @@ export function ResumeForm({ data, onChange }: {
                 onChange={(e) => updateWorkExperience(index, { date: e.target.value })}
               />
             </div>
-            <Textarea
-              placeholder="Description"
-              value={exp.description}
-              onChange={(e) => updateWorkExperience(index, { description: e.target.value })}
+            <RichTextEditor
+              content={exp.description}
+              onChange={(content) => updateWorkExperience(index, { description: content })}
             />
           </div>
         ))}
