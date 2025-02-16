@@ -1,13 +1,14 @@
 "use client"
 
 import { useRef } from 'react'
-import { Download } from 'lucide-react'
+import { Download, FileText, FileCode } from 'lucide-react' // Add FileCode import
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import type { ResumeData } from "@/lib/types"
 import { Template, templates } from "@/lib/templates"
 import jsPDF from 'jspdf'
 import set from 'lodash/set'
+import { exportResumeAsHTML } from "@/utils/exportResume"
 
 export function ResumePreview({ data, template, onChange }: { data: ResumeData; template: Template; onChange: (data: ResumeData) => void }) {
   const resumeRef = useRef<HTMLDivElement>(null)
@@ -41,10 +42,17 @@ export function ResumePreview({ data, template, onChange }: { data: ResumeData; 
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex items-center justify-end border-b bg-white p-4">
+      <div className="flex items-center justify-end border-b bg-white p-4 gap-2">
+        <Button 
+          variant="outline" 
+          onClick={() => exportResumeAsHTML(data)}
+        >
+          <FileCode className="mr-2 h-4 w-4" />
+          Download HTML
+        </Button>
         <Button onClick={downloadResume}>
-          <Download className="mr-2 h-4 w-4" />
-          Download Resume
+          <FileText className="mr-2 h-4 w-4" />
+          Download PDF
         </Button>
       </div>
       <div className="flex-1 overflow-auto bg-white p-12 shadow-sm">

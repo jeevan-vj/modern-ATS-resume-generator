@@ -94,10 +94,59 @@ export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, v
                 onChange={(value) => onUpdate(`workExperience.${exp.id}.company`, value)}
                 className="text-sm text-gray-700"
               />
-              {/* Replace the EditableField with HTMLContent for description */}
               <div className="mt-2 text-sm text-gray-600 prose prose-sm max-w-none">
                 <HTMLContent html={exp.description} />
               </div>
+
+              {exp.projects && exp.projects.length > 0 && (
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium text-gray-700 mb-2">Key Projects</h4>
+                  <div className="space-y-3">
+                    {exp.projects.map((project) => (
+                      <div key={project.id} className="border-l border-gray-200 pl-3">
+                        <div className="flex justify-between items-start">
+                          <h5 className="font-medium text-gray-700">{project.name}</h5>
+                          <span className="text-xs text-gray-500">{project.duration}</span>
+                        </div>
+                        <p className="text-sm text-gray-600 mt-1">{project.description}</p>
+                        <div className="mt-2">
+                          <div className="flex flex-wrap gap-1">
+                            {project.techStack.map((tech, index) => (
+                              <span
+                                key={index}
+                                className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-700"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <ul className="mt-2 text-sm text-gray-600 list-disc list-inside">
+                          {project.achievements.map((achievement, index) => (
+                            <li key={index}>{achievement}</li>
+                          ))}
+                        </ul>
+                        {project.url && (
+                          <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-gray-600 hover:underline mt-2 inline-block"
+                          >
+                            View Project →
+                          </a>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {exp.techStack && exp.techStack.length > 0 && (
+                <div className="mt-2 text-sm text-gray-600 prose prose-sm max-w-none">
+                  <HTMLContent html={exp.techStack.join(', ')} />
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -135,6 +184,38 @@ export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, v
                 />
               )}
             </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {data.skills && data.skills.length > 0 && (
+      <section>
+        <h2 className="mb-4 text-lg font-semibold text-gray-700 uppercase tracking-wider">Skills</h2>
+        <div className="flex flex-wrap gap-2">
+          {data.skills.map((skill, index) => (
+            <EditableField
+              key={index}
+              value={skill}
+              onChange={(value) => onUpdate(`skills.${index}`, value)}
+              className="text-sm text-gray-600"
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    {data.certifications && data.certifications.length > 0 && (
+      <section>
+        <h2 className="mb-4 text-lg font-semibold text-gray-700 uppercase tracking-wider">Certifications</h2>
+        <div className="flex flex-wrap gap-2">
+          {data.certifications.map((cert, index) => (
+            <EditableField
+              key={index}
+              value={cert}
+              onChange={(value) => onUpdate(`certifications.${index}`, value)}
+              className="text-sm text-gray-600"
+            />
           ))}
         </div>
       </section>

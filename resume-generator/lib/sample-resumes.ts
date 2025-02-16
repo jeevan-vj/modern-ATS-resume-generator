@@ -381,6 +381,18 @@ export const sampleResumes: ResumeData[] = [
         "projects": [
           {
             "id": "p1",
+            "name": "Fonterra Inventory Management System",
+            "description": "Trace It is an inventory management system for Fonterra, New Zealand's largest dairy company.",
+            "techStack": ["Oracle Apex", "PL/SQL"],
+            "role": "Technical Lead",
+            "achievements": [
+              "Implmented a new feature to tract samples inventory.",
+              "Introduced software engineering best practices to avoid/minimize deployment/development risks"
+            ],
+            "duration": "Ongoing"
+          },
+          {
+            "id": "p1",
             "name": "PGDB Application Portal",
             "description": "Developed a portal for managing licenses and certifications for NZ practitioners.",
             "techStack": [".NET", "C#", "WEB-API", "Identity Server", "React", "Redux", "Azure"],
