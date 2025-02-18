@@ -147,12 +147,17 @@ export function WorkExperienceSection({ data, onChange }: WorkExperienceSectionP
             {exp.projects.map((project, projectIndex) => (
               <div key={project.id} className="space-y-2 rounded-lg border p-4">
                 <div className="flex justify-between items-center">
-                  <Input
-                    placeholder="Project Name"
-                    value={project.name}
-                    onChange={(e) => updateProject(index, projectIndex, { name: e.target.value })}
-                    className="flex-1"
-                  />
+                  <div className="flex-1">
+                    <label htmlFor={`project-name-${project.id}`} className="block text-sm font-medium text-gray-700 mb-1">
+                      Project Name
+                    </label>
+                    <Input
+                      id={`project-name-${project.id}`}
+                      placeholder="Project Name"
+                      value={project.name}
+                      onChange={(e) => updateProject(index, projectIndex, { name: e.target.value })}
+                    />
+                  </div>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -163,29 +168,57 @@ export function WorkExperienceSection({ data, onChange }: WorkExperienceSectionP
                     <X className="h-4 w-4" />
                   </Button>
                 </div>
-                <RichTextEditor
-                  content={project.description}
-                  onChange={(content) => updateProject(index, projectIndex, { description: content })}
-                />
-                <Input
-                  placeholder="Tech Stack (comma separated)"
-                  value={project.techStack.join(", ")}
-                  onChange={(e) => updateProject(index, projectIndex, { techStack: e.target.value.split(", ") })}
-                />
-                <Input
-                  placeholder="Role"
-                  value={project.role}
-                  onChange={(e) => updateProject(index, projectIndex, { role: e.target.value })}
-                />
-                <RichTextEditor
-                  content={project.achievements}
-                  onChange={(content) => updateProject(index, projectIndex, { achievements: content })}
-                />
-                <Input
-                  placeholder="Duration"
-                  value={project.duration}
-                  onChange={(e) => updateProject(index, projectIndex, { duration: e.target.value })}
-                />
+                <div className="space-y-1">
+                  <label htmlFor={`project-description-${project.id}`} className="block text-sm font-medium text-gray-700">
+                    Project Description
+                  </label>
+                  <RichTextEditor
+                    content={project.description}
+                    onChange={(content) => updateProject(index, projectIndex, { description: content })}
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label htmlFor={`project-tech-${project.id}`} className="block text-sm font-medium text-gray-700">
+                    Tech Stack
+                  </label>
+                  <Input
+                    id={`project-tech-${project.id}`}
+                    placeholder="Tech Stack (comma separated)"
+                    value={project.techStack.join(", ")}
+                    onChange={(e) => updateProject(index, projectIndex, { techStack: e.target.value.split(", ") })}
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label htmlFor={`project-role-${project.id}`} className="block text-sm font-medium text-gray-700">
+                    Role
+                  </label>
+                  <Input
+                    id={`project-role-${project.id}`}
+                    placeholder="Role"
+                    value={project.role}
+                    onChange={(e) => updateProject(index, projectIndex, { role: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label htmlFor={`project-achievements-${project.id}`} className="block text-sm font-medium text-gray-700">
+                    Achievements
+                  </label>
+                  <RichTextEditor
+                    content={project.achievements}
+                    onChange={(content) => updateProject(index, projectIndex, { achievements: content })}
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label htmlFor={`project-duration-${project.id}`} className="block text-sm font-medium text-gray-700">
+                    Duration
+                  </label>
+                  <Input
+                    id={`project-duration-${project.id}`}
+                    placeholder="Duration"
+                    value={project.duration}
+                    onChange={(e) => updateProject(index, projectIndex, { duration: e.target.value })}
+                  />
+                </div>
               </div>
             ))}
             <Button variant="outline" onClick={() => addProject(index)} className="w-full">
