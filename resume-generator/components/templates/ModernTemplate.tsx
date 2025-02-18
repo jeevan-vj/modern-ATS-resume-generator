@@ -125,11 +125,11 @@ export const ModernTemplate = (data: ResumeData, onUpdate: (field: string, value
                             ))}
                           </div>
                         </div>
-                        <ul className="mt-2 text-sm text-gray-600 list-disc list-inside">
-                          {project.achievements.map((achievement, index) => (
+                        {/* <ul className="mt-2 text-sm text-gray-600 list-disc list-inside">
+                          {project.achievements?.map((achievement, index) => (
                             <li key={index}>{achievement}</li>
                           ))}
-                        </ul>
+                        </ul> */}
                         {project.url && (
                           <a
                             href={project.url}

@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Plus, GripVertical, Eye, ArrowUp, ArrowDown, X, Upload } from 'lucide-react'
-import type { ResumeData, WorkExperience, Education, ColorTheme, CustomField } from "@/lib/types"
+import type { ResumeData, WorkExperience, Education, ColorTheme, CustomField, Project } from "@/lib/types"
 import { ObjectiveEnhancer } from './ObjectiveEnhancer'
 import { RichTextEditor } from './RichTextEditor'
 import { WorkExperienceEnhancer } from './WorkExperienceEnhancer'
@@ -23,7 +23,7 @@ export function ResumeForm({ data, onChange }: {
       ...data,
       workExperience: [
         ...data.workExperience,
-        { id: crypto.randomUUID(), company: "", jobTitle: "", date: "", description: "" }
+        { id: crypto.randomUUID(), company: "", jobTitle: "", date: "", description: "", projects: [] }
       ]
     })
   }
@@ -31,6 +31,26 @@ export function ResumeForm({ data, onChange }: {
   const updateWorkExperience = (index: number, workExp: Partial<WorkExperience>) => {
     const newWorkExperience = [...data.workExperience]
     newWorkExperience[index] = { ...newWorkExperience[index], ...workExp }
+    onChange({ ...data, workExperience: newWorkExperience })
+  }
+
+  const addProject = (workExpIndex: number) => {
+    const newWorkExperience = [...data.workExperience]
+    newWorkExperience[workExpIndex].projects.push({
+      id: crypto.randomUUID(),
+      name: "",
+      description: "",
+      techStack: [],
+      role: "",
+      achievements: "",
+      duration: ""
+    })
+    onChange({ ...data, workExperience: newWorkExperience })
+  }
+
+  const updateProject = (workExpIndex: number, projectIndex: number, project: Partial<Project>) => {
+    const newWorkExperience = [...data.workExperience]
+    newWorkExperience[workExpIndex].projects[projectIndex] = { ...newWorkExperience[workExpIndex].projects[projectIndex], ...project }
     onChange({ ...data, workExperience: newWorkExperience })
   }
 
@@ -302,6 +322,49 @@ export function ResumeForm({ data, onChange }: {
                 updateWorkExperience(index, { description: enhancedDescription })
               }
             />
+            {/* <RichTextEditor
+              content={exp.achievements}
+              onChange={(content) => updateWorkExperience(index, { achievements: content })}
+            /> */}
+            <div className="space-y-2">
+              <h3 className="text-md font-semibold">Projects</h3>
+              {exp.projects.map((project, projectIndex) => (
+                <div key={project.id} className="space-y-2 rounded-lg border p-4">
+                  <Input
+                    placeholder="Project Name"
+                    value={project.name}
+                    onChange={(e) => updateProject(index, projectIndex, { name: e.target.value })}
+                  />
+                  <RichTextEditor
+                    content={project.description}
+                    onChange={(content) => updateProject(index, projectIndex, { description: content })}
+                  />
+                  <Input
+                    placeholder="Tech Stack (comma separated)"
+                    value={project.techStack.join(", ")}
+                    onChange={(e) => updateProject(index, projectIndex, { techStack: e.target.value.split(", ") })}
+                  />
+                  <Input
+                    placeholder="Role"
+                    value={project.role}
+                    onChange={(e) => updateProject(index, projectIndex, { role: e.target.value })}
+                  />
+                  <RichTextEditor
+                    content={project.achievements}
+                    onChange={(content) => updateProject(index, projectIndex, { achievements: content })}
+                  />
+                  <Input
+                    placeholder="Duration"
+                    value={project.duration}
+                    onChange={(e) => updateProject(index, projectIndex, { duration: e.target.value })}
+                  />
+                </div>
+              ))}
+              <Button variant="outline" onClick={() => addProject(index)} className="w-full">
+                <Plus className="mr-2 h-4 w-4" />
+                Add Project
+              </Button>
+            </div>
           </div>
         ))}
         <Button variant="outline" onClick={addWorkExperience} className="w-full">

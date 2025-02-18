@@ -58,6 +58,30 @@ export function ResumePreview({ data, template, onChange }: { data: ResumeData; 
       <div className="flex-1 overflow-auto bg-white p-12 shadow-sm">
         <div ref={resumeRef} className="mx-auto max-w-3xl">
           {template.render(data, handleUpdate)}
+          {/* {data.workExperience.map((exp) => (
+            <div key={exp.id} className="mb-4">
+              <h3 className="text-lg font-semibold">{exp.company}</h3>
+              <p>{exp.jobTitle} ({exp.date})</p>
+              <div dangerouslySetInnerHTML={{ __html: exp.description }} />
+              <div dangerouslySetInnerHTML={{ __html: exp.achievements }} />
+              {exp.projects && exp.projects.length > 0 && (
+                <div className="mt-2">
+                  <h4 className="text-md font-semibold">Projects</h4>
+                  {exp.projects.map((project) => (
+                    <div key={project.id} className="ml-4">
+                      <h5 className="text-sm font-semibold">{project.name}</h5>
+                      <div dangerouslySetInnerHTML={{ __html: project.description }} />
+                      <p><strong>Tech Stack:</strong> {project.techStack.join(", ")}</p>
+                      <p><strong>Role:</strong> {project.role}</p>
+                      <p><strong>Achievements:</strong></p>
+                      <div dangerouslySetInnerHTML={{ __html: project.achievements }} />
+                      <p><strong>Duration:</strong> {project.duration}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))} */}
         </div>
       </div>
       <div className="flex items-center border-t bg-white p-4">

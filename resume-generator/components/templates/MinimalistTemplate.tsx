@@ -49,27 +49,7 @@ export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, v
       />
     </header>
 
-    {data.customFields.length > 0 && (
-      <section>
-        <h2 className="mb-2 text-lg font-semibold text-gray-700 uppercase tracking-wider">Additional Information</h2>
-        <div className="grid grid-cols-2 gap-2 text-sm">
-          {data.customFields.map((field) => (
-            <div key={field.id}>
-              <EditableField
-                value={field.label}
-                onChange={(value) => onUpdate(`customFields.${field.id}.label`, value)}
-                className="font-medium"
-              />
-              :&nbsp;
-              <EditableField
-                value={field.value}
-                onChange={(value) => onUpdate(`customFields.${field.id}.value`, value)}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-    )}
+    
 
     {data.workExperience.length > 0 && (
       <section>
@@ -108,7 +88,8 @@ export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, v
                           <h5 className="font-medium text-gray-700">{project.name}</h5>
                           <span className="text-xs text-gray-500">{project.duration}</span>
                         </div>
-                        <p className="text-sm text-gray-600 mt-1">{project.description}</p>
+                        {/* <p className="text-sm text-gray-600 mt-1">{project.description}</p> */}
+                        <div className="text-sm text-gray-600 mt-1" dangerouslySetInnerHTML={{ __html: project.description }} />
                         <div className="mt-2">
                           <div className="flex flex-wrap gap-1">
                             {project.techStack.map((tech, index) => (
@@ -121,11 +102,9 @@ export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, v
                             ))}
                           </div>
                         </div>
-                        <ul className="mt-2 text-sm text-gray-600 list-disc list-inside">
-                          {project.achievements.map((achievement, index) => (
-                            <li key={index}>{achievement}</li>
-                          ))}
-                        </ul>
+                        <div className="mt-2 text-sm text-gray-600 prose prose-sm max-w-none">
+                          <HTMLContent html={project.achievements} />
+                        </div>
                         {project.url && (
                           <a
                             href={project.url}
@@ -216,6 +195,22 @@ export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, v
               onChange={(value) => onUpdate(`certifications.${index}`, value)}
               className="text-sm text-gray-600"
             />
+          ))}
+        </div>
+      </section>
+    )}
+
+{data.customFields && data.customFields.length > 0 && (
+      <section>
+        <h2 className="mb-4 text-lg font-semibold text-gray-700 uppercase tracking-wider">Additional Information</h2>
+        <div className="space-y-4">
+          {data.customFields.map((field) => (
+            <div key={field.id} className="border-l-2 border-gray-100 pl-4">
+              <h3 className="font-medium text-gray-700 mb-2">{field.title}</h3>
+              <div className="text-sm text-gray-600 prose prose-sm max-w-none">
+                <HTMLContent html={field.content.replace(/\n/g, '<br />')} />
+              </div>
+            </div>
           ))}
         </div>
       </section>

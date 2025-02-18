@@ -7,10 +7,12 @@ export interface ResumeData {
     website: string
     location: string
     profileImage?: string
+    linkedin?: string  // Added linkedin field
   }
   workExperience: WorkExperience[]
   education: Education[]
   skills: string[]
+  certifications?: string[]  // Added certifications field
   colorTheme: ColorTheme
   customFields: CustomField[]
 }
@@ -26,7 +28,7 @@ export interface WorkExperience {
   teamSize: string
   responsibilities: string[]
   companyDetails: CompanyDetails
-  achievements: string[]
+  achievements: string // Changed from string[] to string for HTML content
   reportingTo?: string  // e.g., "CTO", "Engineering Manager"
   keywords: string[]  // For ATS optimization
 }
@@ -37,6 +39,7 @@ export interface Education {
   degree: string
   date: string
   gpa: string
+  achievements?: string  // Added achievements field
 }
 
 export interface ColorTheme {
@@ -49,7 +52,9 @@ export interface ColorTheme {
 export interface CustomField {
   id: string
   label: string
-  value: string
+  value: string,
+  title: string
+  content: string
 }
 
 interface Project {
@@ -58,7 +63,7 @@ interface Project {
   description: string
   techStack: string[]
   role: string
-  achievements: string[]
+  achievements: string // Changed from string[] to string for HTML content
   url?: string // GitHub/Live demo links
   duration: string
 }

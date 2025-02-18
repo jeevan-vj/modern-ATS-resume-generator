@@ -56,8 +56,7 @@ export default function ResumeBuilder() {
   const handleSampleSelect = (index: string) => {
     setResumeData({
       ...sampleResumes[parseInt(index)],
-      colorTheme: initialData.colorTheme,
-      customFields: [],
+      colorTheme: initialData.colorTheme
     })
   }
 

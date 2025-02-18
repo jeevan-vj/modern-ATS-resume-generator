@@ -34,6 +34,12 @@ export async function POST(req: NextRequest) {
                   (parsedData.skills?.soft_skills || []).length
     });
 
+    // Ensure projects field is included in workExperience
+    parsedData.work_experience = parsedData.work_experience.map((exp: any) => ({
+      ...exp,
+      projects: exp.projects || []
+    }));
+
     return NextResponse.json({
       success: true,
       data: parsedData,

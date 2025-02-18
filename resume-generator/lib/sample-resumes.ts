@@ -32,11 +32,11 @@ export const sampleResumes: ResumeData[] = [
             description: "Led the migration of legacy payment system to modern microservices architecture",
             techStack: ["C#", ".NET 6", "Azure Service Bus", "Redis", "PostgreSQL", "Docker", "Kubernetes"],
             role: "Tech Lead",
-            achievements: [
-              "Reduced payment processing latency by 65%",
-              "Improved system scalability to handle 3x transaction volume",
-              "Implemented real-time payment status tracking"
-            ],
+            achievements: `<ul>
+              <li>Reduced payment processing latency by 65%</li>
+              <li>Improved system scalability to handle 3x transaction volume</li>
+              <li>Implemented real-time payment status tracking</li>
+            </ul>`,
             duration: "8 months"
           },
           {
@@ -45,11 +45,11 @@ export const sampleResumes: ResumeData[] = [
             description: "Built internal developer platform for standardizing microservices development",
             techStack: ["TypeScript", "React", "Node.js", "GraphQL", "Docker", "AWS ECS"],
             role: "Architecture Lead",
-            achievements: [
-              "Reduced new service bootstrapping time from 2 weeks to 2 days",
-              "Implemented automated compliance checks",
-              "Created comprehensive documentation and tutorials"
-            ],
+            achievements: `<ul>
+              <li>Reduced new service bootstrapping time from 2 weeks to 2 days</li>
+              <li>Implemented automated compliance checks</li>
+              <li>Created comprehensive documentation and tutorials</li>
+            </ul>`,
             duration: "6 months",
             url: "github.com/fintech/dev-platform"
           }
@@ -99,11 +99,11 @@ export const sampleResumes: ResumeData[] = [
           size: "Medium (200-500)",
           type: "Product"
         },
-        achievements: [
-          "Promoted to Tech Lead within 1 year",
-          "Reduced production incidents by 70%",
-          "Implemented company-wide coding standards"
-        ],
+        achievements: `<ul>
+          <li>Promoted to Tech Lead within 1 year</li>
+          <li>Reduced production incidents by 70%</li>
+          <li>Implemented company-wide coding standards</li>
+        </ul>`,
         reportingTo: "VP of Engineering",
         keywords: [
           "microservices",
@@ -198,7 +198,27 @@ export const sampleResumes: ResumeData[] = [
           <li>Led a team of 6 engineers in developing cloud-native applications using <strong>AWS, Kubernetes, and Docker</strong></li>
           <li>Implemented automated CI/CD pipelines reducing deployment time by <strong>60%</strong></li>
           <li>Mentored 8 junior developers in best practices and modern development methodologies</li>
-        </ul>`
+        </ul>`,
+        achievements: `<ul>
+          <li>Received Outstanding Technical Leadership award</li>
+          <li>Improved system performance by 40% through architecture optimization</li>
+          <li>Successfully mentored 3 junior developers to senior positions</li>
+        </ul>`,
+        projects: [
+          {
+            id: "p1",
+            name: "Cloud Migration Initiative",
+            description: "Led the migration of on-premise applications to AWS cloud",
+            techStack: ["AWS", "Terraform", "Docker", "Kubernetes"],
+            role: "Technical Lead",
+            achievements: `<ul>
+              <li>Reduced infrastructure costs by 45%</li>
+              <li>Improved system availability to 99.99%</li>
+              <li>Implemented automated disaster recovery</li>
+            </ul>`,
+            duration: "12 months"
+          }
+        ]
       },
       {
         id: "2",
@@ -210,7 +230,27 @@ export const sampleResumes: ResumeData[] = [
           <li>Built responsive web applications using <strong>React, Redux, and TypeScript</strong></li>
           <li>Optimized PostgreSQL database queries improving application performance by <strong>35%</strong></li>
           <li>Implemented automated testing achieving <strong>90% code coverage</strong></li>
-        </ul>`
+        </ul>`,
+        achievements: `<ul>
+          <li>Led successful migration from MongoDB to PostgreSQL</li>
+          <li>Reduced API response time by 35%</li>
+          <li>Implemented comprehensive test automation strategy</li>
+        </ul>`,
+        projects: [
+          {
+            id: "p1",
+            name: "E-commerce Platform",
+            description: "Built scalable e-commerce platform handling millions in transactions",
+            techStack: ["Node.js", "React", "PostgreSQL", "Redis"],
+            role: "Full Stack Developer",
+            achievements: `<ul>
+              <li>Implemented real-time inventory management</li>
+              <li>Reduced checkout time by 40%</li>
+              <li>Built analytics dashboard for sales tracking</li>
+            </ul>`,
+            duration: "18 months"
+          }
+        ]
       }
     ],
     education: [
@@ -218,7 +258,7 @@ export const sampleResumes: ResumeData[] = [
         id: "1",
         school: "University of California, Berkeley",
         degree: "B.S. in Computer Science",
-        date: "2011 - 2015",
+        date: "2011 - 5",
         gpa: "3.8",
         achievements: "Data Structures Teaching Assistant, ACM Programming Team"
       }
@@ -264,7 +304,31 @@ export const sampleResumes: ResumeData[] = [
         company: "Global Brands Co.",
         jobTitle: "Digital Marketing Manager",
         date: "2019 - Present",
-        description: "Develop and execute digital marketing strategies, resulting in 30% increase in online engagement and 25% growth in sales."
+        description: `<ul>
+          <li>Developed and executed digital marketing strategies across multiple channels</li>
+          <li>Increased online engagement by <strong>30%</strong> through targeted campaigns</li>
+          <li>Achieved <strong>25% growth</strong> in sales through digital initiatives</li>
+        </ul>`,
+        achievements: `<ul>
+          <li>Led successful rebranding campaign resulting in 40% increased brand recognition</li>
+          <li>Achieved highest ROI in department history</li>
+          <li>Implemented data-driven marketing strategy</li>
+        </ul>`,
+        projects: [
+          {
+            id: "p1",
+            name: "Brand Relaunch Campaign",
+            description: "Led complete digital rebranding initiative",
+            techStack: ["Adobe Creative Suite", "Google Analytics", "Social Media Tools"],
+            role: "Project Lead",
+            achievements: `<ul>
+              <li>Increased brand awareness by 40%</li>
+              <li>Generated 2M+ social media impressions</li>
+              <li>Achieved 150% ROI on campaign spend</li>
+            </ul>`,
+            duration: "6 months"
+          }
+        ]
       },
       {
         id: "2",
@@ -315,7 +379,32 @@ export const sampleResumes: ResumeData[] = [
         company: "Digital Solutions Corp",
         jobTitle: "Full Stack Engineer",
         date: "2020 - Present",
-        description: "• Developed and maintained microservices handling 500k+ daily users using Node.js and Go\n• Implemented responsive UI components with React and Material-UI reducing load time by 45%\n• Created mobile-first design system used across 12 different projects\n• Led migration from monolith to microservices architecture"
+        description: `<ul>
+          <li>Developed and maintained microservices handling 500k+ daily users using Node.js and Go</li>
+          <li>Implemented responsive UI components with React and Material-UI reducing load time by 45%</li>
+          <li>Created mobile-first design system used across 12 different projects</li>
+          <li>Led migration from monolith to microservices architecture</li>
+        </ul>`,
+        achievements: `<ul>
+          <li>Received Best Developer Award 2022</li>
+          <li>Reduced application load time by 45%</li>
+          <li>Successfully led team of 5 in microservices migration</li>
+        </ul>`,
+        projects: [
+          {
+            id: "p1",
+            name: "Design System Implementation",
+            description: "Created comprehensive design system for enterprise applications",
+            techStack: ["React", "TypeScript", "Storybook", "Material-UI"],
+            role: "Technical Lead",
+            achievements: `<ul>
+              <li>Reduced component development time by 60%</li>
+              <li>Implemented accessibility standards across all components</li>
+              <li>Created comprehensive documentation and usage guidelines</li>
+            </ul>`,
+            duration: "10 months"
+          }
+        ]
       },
       {
         id: "2",
@@ -350,6 +439,8 @@ export const sampleResumes: ResumeData[] = [
     customFields: [
       {
         id: "1",
+        label: "Open Source Contributions",
+        value: "React Library & Framework Contributions",
         title: "Open Source",
         content: "• Created React component library with 1.5k+ npm downloads\n• Contributor to Next.js and Material-UI"
       }
@@ -377,30 +468,37 @@ export const sampleResumes: ResumeData[] = [
         "company": "Datacom, New Zealand",
         "jobTitle": "Technical Lead",
         "date": "2023 - Present",
-        "description": "<ul><li>Designed and reviewed new features with architects and team members for critical business applications.</li><li>Implemented scalable backend solutions using .NET, C#, and Azure technologies.</li><li>Enhanced application performance and optimized Azure costs by identifying and addressing bottlenecks.</li><li>Led backlog grooming, prioritization, and technical discussions with business users to deliver robust solutions.</li><li>Modernized legacy applications by transitioning to cloud-native, decoupled architectures.</li></ul>",
+        "description": `<ul><li>Designed and reviewed new features with architects and team members for critical business applications.</li><li>Implemented scalable backend solutions using .NET, C#, and Azure technologies.</li><li>Enhanced application performance and optimized Azure costs by identifying and addressing bottlenecks.</li><li>Led backlog grooming, prioritization, and technical discussions with business users to deliver robust solutions.</li><li>Modernized legacy applications by transitioning to cloud-native, decoupled architectures.</li></ul>`,
+        "achievements": `<ul>
+          <li>Successfully led the modernization of 3 legacy applications</li>
+          <li>Reduced Azure infrastructure costs by 30%</li>
+          <li>Implemented robust CI/CD practices across teams</li>
+        </ul>`,
         "projects": [
           {
             "id": "p1",
             "name": "Fonterra Inventory Management System",
-            "description": "Trace It is an inventory management system for Fonterra, New Zealand's largest dairy company.",
+            "description": "Trace It is an inventory management system for Fonterra, New Zealand's largest dairy company",
             "techStack": ["Oracle Apex", "PL/SQL"],
             "role": "Technical Lead",
-            "achievements": [
-              "Implmented a new feature to tract samples inventory.",
-              "Introduced software engineering best practices to avoid/minimize deployment/development risks"
-            ],
+            "achievements": `<ul>
+              <li>Implemented a new feature to track samples inventory</li>
+              <li>Introduced software engineering best practices</li>
+              <li>Reduced deployment risks through automated testing</li>
+            </ul>`,
             "duration": "Ongoing"
           },
           {
-            "id": "p1",
+            "id": "p2",
             "name": "PGDB Application Portal",
-            "description": "Developed a portal for managing licenses and certifications for NZ practitioners.",
+            "description": "Developed a portal for managing licenses and certifications for NZ practitioners",
             "techStack": [".NET", "C#", "WEB-API", "Identity Server", "React", "Redux", "Azure"],
             "role": "Technical Lead",
-            "achievements": [
-              "Implemented proactive application monitoring to ensure business continuity.",
-              "Delivered scalable architectural solutions for critical business functions."
-            ],
+            "achievements": `<ul>
+              <li>Implemented proactive application monitoring</li>
+              <li>Delivered scalable architectural solutions</li>
+              <li>Achieved 99.9% system availability</li>
+            </ul>`,
             "duration": "Ongoing"
           },
           {
@@ -409,10 +507,10 @@ export const sampleResumes: ResumeData[] = [
             "description": "Supported and modernized various business-critical applications.",
             "techStack": [".NET", "C#", "WEB-API", "React", "Redux", "Azure", "Angular", "Sitecore"],
             "role": "Technical Lead",
-            "achievements": [
-              "Ensured business continuity by resolving P1/P2 issues promptly.",
-              "Migrated legacy applications to microservices architecture."
-            ],
+            "achievements": `<ul>
+              <li>Ensured business continuity by resolving P1/P2 issues promptly.</li>
+              <li>Migrated legacy applications to microservices architecture.</li>
+            </ul>`,
             "duration": "Ongoing"
           },
           {
@@ -421,10 +519,10 @@ export const sampleResumes: ResumeData[] = [
             "description": "Migrate in-app authentication to Azure Entra ID and Azure B2C.",
             "techStack": ["Java", "Azure", "SQL Server", "Azure DevOps"],
             "role": "Architect and Developer",
-            "achievements": [
-              "Designed and architected user migration to Azure Entra ID and Azure B2C.",
-              "Built CI/CD pipeline for legacy Java applications in Azure DevOps."
-            ]
+            "achievements": `<ul>
+              <li>Designed and architected user migration to Azure Entra ID and Azure B2C.</li>
+              <li>Built CI/CD pipeline for legacy Java applications in Azure DevOps.</li>
+            </ul>`
           },
           {
             "id": "p2",
@@ -432,10 +530,10 @@ export const sampleResumes: ResumeData[] = [
             "description": "Support various line-of-business applications in Ballance Agriculture.",
             "techStack": [".NET", "Azure", "React", "Angular", "SQL Server"],
             "role": "Architect and Developer",
-            "achievements": [
-              "Designed and architected new application features.",
-              "Migrated Bamboo pipeline to Bitbucket pipelines."
-            ]
+            "achievements": `<ul>
+              <li>Designed and architected new application features.</li>
+              <li>Migrated Bamboo pipeline to Bitbucket pipelines.</li>
+            </ul>`
           },
           {
             "id": "p3",
@@ -443,10 +541,10 @@ export const sampleResumes: ResumeData[] = [
             "description": "Support CSN legacy (VB.NET and C#) applications, ensuring business continuity and optimizing databases.",
             "techStack": [".NET", "C#", "WEB-API", "Identity Server", "React", "Redux", "Azure", "Angular", "Worker-Services", "Powershell", "Sitecore", "Azure Pipelines", "GitHub Actions"],
             "role": "Developer and Support Engineer",
-            "achievements": [
-              "Designed and reviewed new features with architects and team.",
-              "Ensured business continuity by supporting urgent user requests."
-            ]
+            "achievements": `<ul>
+              <li>Designed and reviewed new features with architects and team.</li>
+              <li>Ensured business continuity by supporting urgent user requests.</li>
+            </ul>`
           }
         ]
       },
@@ -455,18 +553,24 @@ export const sampleResumes: ResumeData[] = [
         "company": "Kinesso, Malaysia",
         "jobTitle": "Senior Software Engineer",
         "date": "2020 - 2022",
-        "description": "<ul><li>Designed and implemented modernized legacy applications using microservices architecture.</li><li>Developed GRPC services for inter-process communication and optimized database performance.</li><li>Automated deployments using Jenkins and introduced DevOps practices for database development.</li><li>Integrated various data sources like Snowflake, Redshift, and Athena for analytics tools.</li><li>Monitored application performance using DataDog and implemented CI/CD pipelines.</li></ul>",
+        "description": `<ul><li>Designed and implemented modernized legacy applications using microservices architecture.</li><li>Developed GRPC services for inter-process communication and optimized database performance.</li><li>Automated deployments using Jenkins and introduced DevOps practices for database development.</li><li>Integrated various data sources like Snowflake, Redshift, and Athena for analytics tools.</li><li>Monitored application performance using DataDog and implemented CI/CD pipelines.</li></ul>`,
+        "achievements": `<ul>
+          <li>Reduced deployment time by 70% through automation</li>
+          <li>Improved data processing efficiency by 45%</li>
+          <li>Successfully migrated 5 legacy applications</li>
+        </ul>`,
         "projects": [
           {
             "id": "p3",
             "name": "Magnifiq",
-            "description": "Developed a business intelligence analytics tool with custom ETL and reporting capabilities.",
+            "description": "Developed a business intelligence analytics tool with custom ETL capabilities",
             "techStack": [".NET", "GRPC", "SQL Server", "AWS", "Docker", "Jenkins", "Snowflake"],
             "role": "Senior Software Engineer",
-            "achievements": [
-              "Streamlined database development with Flyway for version control.",
-              "Reduced manual deployment efforts by automating processes."
-            ],
+            "achievements": `<ul>
+              <li>Streamlined database development with Flyway</li>
+              <li>Reduced manual deployment effort by 80%</li>
+              <li>Improved data processing speed by 45%</li>
+            </ul>`,
             "duration": "2 years"
           },
           {
@@ -475,10 +579,10 @@ export const sampleResumes: ResumeData[] = [
             "description": "Built an ETL orchestration platform using Dagster and developed a dashboard UI.",
             "techStack": [".NET", "Web-API", "Dagster", "Python", "AWS", "Angular"],
             "role": "Senior Software Engineer",
-            "achievements": [
-              "Migrated legacy ETL processes to a modern platform.",
-              "Improved ETL performance and scalability."
-            ],
+            "achievements": `<ul>
+              <li>Migrated legacy ETL processes to a modern platform.</li>
+              <li>Improved ETL performance and scalability.</li>
+            </ul>`,
             "duration": "1 year"
           }
         ]
@@ -488,7 +592,7 @@ export const sampleResumes: ResumeData[] = [
         "company": "Sitecore, Malaysia",
         "jobTitle": "Software Engineer",
         "date": "2017 - 2022",
-        "description": "<ul><li>Developed Sitecore platform modules to enhance CMS functionality with Azure Storage and CDN support.</li><li>Implemented backend services using WEB-API and C#, and developed front-end applications using Angular.</li><li>Set up CI pipelines and automated deployments using PowerShell and TeamCity.</li><li>Participated in R&D, sprint planning, and cross-functional team collaboration.</li></ul>",
+        "description": `<ul><li>Developed Sitecore platform modules to enhance CMS functionality with Azure Storage and CDN support.</li><li>Implemented backend services using WEB-API and C#, and developed front-end applications using Angular.</li><li>Set up CI pipelines and automated deployments using PowerShell and TeamCity.</li><li>Participated in R&D, sprint planning, and cross-functional team collaboration.</li></ul>`,
         "projects": [
           {
             "id": "p5",
@@ -496,10 +600,10 @@ export const sampleResumes: ResumeData[] = [
             "description": "Enabled users to deploy Sitecore in Azure through a marketplace solution.",
             "techStack": ["Azure", "WEB-API", "Angular", "C#", "PowerShell"],
             "role": "Software Engineer",
-            "achievements": [
-              "Developed end-to-end tests using BDD with SpecFlow.",
-              "Streamlined deployment processes with CI automation."
-            ],
+            "achievements": `<ul>
+              <li>Developed end-to-end tests using BDD with SpecFlow</li>
+              <li>Streamlined deployment processes with CI automation</li>
+            </ul>`,
             "duration": "2 years"
           },
           {
@@ -508,10 +612,10 @@ export const sampleResumes: ResumeData[] = [
             "description": "Developed tools for deploying Sitecore in Azure environments.",
             "techStack": ["Azure", "PowerShell", "TeamCity"],
             "role": "Software Engineer",
-            "achievements": [
-              "Implemented unit tests using Pester.",
-              "Collaborated with architects to design scalable solutions."
-            ],
+            "achievements": `<ul>
+              <li>Implemented unit tests using Pester</li>
+              <li>Collaborated with architects to design scalable solutions</li>
+            </ul>`,
             "duration": "1 year"
           }
         ]
@@ -529,15 +633,15 @@ export const sampleResumes: ResumeData[] = [
         "description": "B2B E-Commerce store in Europe.",
         "techStack": ["ASP.NET MVC", "SQL Server", "Knockout.js", "HTML5", "SCSS", "Solr"],
         "role": "Software Engineer",
-        "achievements": [
-          "Designed the E-Commerce website.",
-          "Migrated old ASP.NET Web Form website to ASP.NET MVC5.",
-          "Implemented service layer using WEB-API.",
-          "Designed and implemented SQL Server database.",
-          "Updated data sync feature from different content databases to the main E-Commerce database.",
-          "Implemented caching mechanism and search functionality using Solr.",
-          "Developed a responsive front-end using Bootstrap and Knockout.js."
-        ],
+        "achievements": `<ul>
+          <li>Designed the E-Commerce website.</li>
+          <li>Migrated old ASP.NET Web Form website to ASP.NET MVC5.</li>
+          <li>Implemented service layer using WEB-API.</li>
+          <li>Designed and implemented SQL Server database.</li>
+          <li>Updated data sync feature from different content databases to the main E-Commerce database.</li>
+          <li>Implemented caching mechanism and search functionality using Solr.</li>
+          <li>Developed a responsive front-end using Bootstrap and Knockout.js.</li>
+        </ul>`,
         "duration": "2 years"
       }
     ]
@@ -555,12 +659,12 @@ export const sampleResumes: ResumeData[] = [
         "description": "Award-winning journey-based cloud ERP solution.",
         "techStack": ["SQL Server", "ASP.NET", "JavaScript", "jQuery", "HTML", "WEB-API", "SignalR", "Highcharts", "JSON", "SQL CLR"],
         "role": "Software Engineer",
-        "achievements": [
-          "Designed the backend architecture.",
-          "Implemented backend services using WEB-API.",
-          "Developed and optimized database and stored procedures.",
-          "Implemented real-time push notifications using SignalR."
-        ],
+        "achievements": `<ul>
+          <li>Designed the backend architecture.</li>
+          <li>Implemented backend services using WEB-API.</li>
+          <li>Developed and optimized database and stored procedures.</li>
+          <li>Implemented real-time push notifications using SignalR.</li>
+        </ul>`,
         "duration": "1 year 10 months"
       }
     ]
@@ -592,14 +696,27 @@ export const sampleResumes: ResumeData[] = [
     ],
     "customFields": [
       {
-        "id": "1",
-        "title": "Technical Leadership",
-        "content": "• Led architectural decisions for cloud-native applications.\n• Mentored junior developers and promoted engineering best practices.\n• Delivered scalable solutions for critical business applications."
-      },
-      {
-        "id": "2",
-        "title": "Community Involvement",
-        "content": "• Active contributor to technical blogs and forums.\n• Participated in knowledge-sharing sessions within teams."
+        "id": "3",
+        "title": "Personal Projects",
+        "content": `• Resume Pro (resumepro.iamjeevan.com)
+- Built an ATS-friendly resume generator using Next.js, React, and Tailwind CSS
+- Implemented modern UI with real-time preview and multiple templates
+- Tech stack: TypeScript, Next.js, React, Tailwind CSS
+
+• Vanish Notes (vanishnotes.iamjeevan.com)
+- Developed a self-destructive note sharing application
+- Implemented end-to-end encryption and auto-deletion features
+- Tech stack: Next.js, Node.js, MongoDB, Crypto.js
+
+• NZ Salary Calculator (nzsalarycalculator.iamjeevan.com)
+- Created a comprehensive salary calculator for New Zealand employees
+- Includes tax calculations, KiwiSaver, and other deductions
+- Tech stack: React, TypeScript, Tailwind CSS
+
+• Flash Card Fest (flash-card-fest.netlify.app)
+- Designed an AI-powered study flash card generator
+- Integrated with OpenAI API for automated content generation
+- Tech stack: React, OpenAI API, Node.js, Express`
       }
     ],
     "colorTheme": {

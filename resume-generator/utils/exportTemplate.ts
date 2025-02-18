@@ -51,7 +51,7 @@ export const generateStandaloneHTML = (content: string, title: string) => {
 <body>
     ${content}
     <div class="no-print text-center mt-8 text-sm text-gray-500">
-        <p>Generated using Modern ATS Resume Generator</p>
+        <p>Generated using Modern ATS Resume Generator by Jeevan Wijerathna (iamjeevan.com)</p>
         <button onclick="window.print()" class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
             Print Resume
         </button>
