@@ -136,94 +136,134 @@ export function ResumeForm({ data, onChange }: {
     <div className="space-y-8 p-4">
       <section className="space-y-4">
         <h2 className="text-lg font-semibold">Personal Information</h2>
-        <div className="space-y-2">
-          <Input
-            placeholder="Name"
-            value={data.personalInfo.name}
-            onChange={(e) =>
-              onChange({
-                ...data,
-                personalInfo: { ...data.personalInfo, name: e.target.value }
-              })
-            }
-          />
-          <div className="relative">
-            <Textarea
-              placeholder="Objective"
-              value={data.personalInfo.objective}
+        <div className="space-y-4">
+          <div className="form-group">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+              Full Name
+            </label>
+            <Input
+              id="name"
+              placeholder="Enter your full name"
+              value={data.personalInfo.name}
               onChange={(e) =>
                 onChange({
                   ...data,
-                  personalInfo: { ...data.personalInfo, objective: e.target.value }
-                })
-              }
-            />
-            <ObjectiveEnhancer
-              currentObjective={data.personalInfo.objective}
-              workExperience={data.workExperience}
-              education={data.education}
-              onSelect={(objective) =>
-                onChange({
-                  ...data,
-                  personalInfo: { ...data.personalInfo, objective }
+                  personalInfo: { ...data.personalInfo, name: e.target.value }
                 })
               }
             />
           </div>
-          <div className="grid grid-cols-2 gap-2">
-            <Input
-              placeholder="Email"
-              type="email"
-              value={data.personalInfo.email}
-              onChange={(e) =>
-                onChange({
-                  ...data,
-                  personalInfo: { ...data.personalInfo, email: e.target.value }
-                })
-              }
-            />
-            <Input
-              placeholder="Phone"
-              type="tel"
-              value={data.personalInfo.phone}
-              onChange={(e) =>
-                onChange({
-                  ...data,
-                  personalInfo: { ...data.personalInfo, phone: e.target.value }
-                })
-              }
-            />
+          <div className="form-group">
+            <label htmlFor="objective" className="block text-sm font-medium text-gray-700 mb-1">
+              Professional Summary
+            </label>
+            <div className="relative">
+              <Textarea
+                id="objective"
+                placeholder="Write a brief professional summary..."
+                value={data.personalInfo.objective}
+                onChange={(e) =>
+                  onChange({
+                    ...data,
+                    personalInfo: { ...data.personalInfo, objective: e.target.value }
+                  })
+                }
+              />
+              <ObjectiveEnhancer
+                currentObjective={data.personalInfo.objective}
+                workExperience={data.workExperience}
+                education={data.education}
+                onSelect={(objective) =>
+                  onChange({
+                    ...data,
+                    personalInfo: { ...data.personalInfo, objective }
+                  })
+                }
+              />
+            </div>
           </div>
-          <div className="grid grid-cols-2 gap-2">
-            <Input
-              placeholder="Website"
-              type="url"
-              value={data.personalInfo.website}
-              onChange={(e) =>
-                onChange({
-                  ...data,
-                  personalInfo: { ...data.personalInfo, website: e.target.value }
-                })
-              }
-            />
-            <Input
-              placeholder="Location"
-              value={data.personalInfo.location}
-              onChange={(e) =>
-                onChange({
-                  ...data,
-                  personalInfo: { ...data.personalInfo, location: e.target.value }
-                })
-              }
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="form-group">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                Email Address
+              </label>
+              <Input
+                id="email"
+                placeholder="name@example.com"
+                type="email"
+                value={data.personalInfo.email}
+                onChange={(e) =>
+                  onChange({
+                    ...data,
+                    personalInfo: { ...data.personalInfo, email: e.target.value }
+                  })
+                }
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                Phone Number
+              </label>
+              <Input
+                id="phone"
+                placeholder="+1 (555) 000-0000"
+                type="tel"
+                value={data.personalInfo.phone}
+                onChange={(e) =>
+                  onChange({
+                    ...data,
+                    personalInfo: { ...data.personalInfo, phone: e.target.value }
+                  })
+                }
+              />
+            </div>
           </div>
-          <div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="form-group">
+              <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-1">
+                Portfolio Website
+              </label>
+              <Input
+                id="website"
+                placeholder="https://yourportfolio.com"
+                type="url"
+                value={data.personalInfo.website}
+                onChange={(e) =>
+                  onChange({
+                    ...data,
+                    personalInfo: { ...data.personalInfo, website: e.target.value }
+                  })
+                }
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-1">
+                Location
+              </label>
+              <Input
+                id="location"
+                placeholder="City, Country"
+                value={data.personalInfo.location}
+                onChange={(e) =>
+                  onChange({
+                    ...data,
+                    personalInfo: { ...data.personalInfo, location: e.target.value }
+                  })
+                }
+              />
+            </div>
+          </div>
+          <div className="form-group">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Profile Image
+            </label>
             <input
               type="file"
               accept="image/*"
               onChange={handleFileChange}
               ref={fileInputRef}
               className="hidden"
+              aria-label="Upload profile image"
             />
             <Button 
               variant="outline" 
@@ -239,41 +279,53 @@ export function ResumeForm({ data, onChange }: {
 
       <section className="space-y-4">
         <h2 className="text-lg font-semibold">Color Theme</h2>
-        <div className="grid grid-cols-2 gap-2">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Primary Color</label>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="form-group">
+            <label htmlFor="primaryColor" className="block text-sm font-medium text-gray-700 mb-1">
+              Primary Color
+            </label>
             <input
+              id="primaryColor"
               type="color"
               value={data.colorTheme.primary}
               onChange={(e) => updateColorTheme('primary', e.target.value)}
-              className="mt-1 block w-full"
+              className="mt-1 block w-full h-10 p-1 rounded-md border border-gray-300"
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Secondary Color</label>
+          <div className="form-group">
+            <label htmlFor="secondaryColor" className="block text-sm font-medium text-gray-700 mb-1">
+              Secondary Color
+            </label>
             <input
+              id="secondaryColor"
               type="color"
               value={data.colorTheme.secondary}
               onChange={(e) => updateColorTheme('secondary', e.target.value)}
-              className="mt-1 block w-full"
+              className="mt-1 block w-full h-10 p-1 rounded-md border border-gray-300"
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Text Color</label>
+          <div className="form-group">
+            <label htmlFor="textColor" className="block text-sm font-medium text-gray-700 mb-1">
+              Text Color
+            </label>
             <input
+              id="textColor"
               type="color"
               value={data.colorTheme.text}
               onChange={(e) => updateColorTheme('text', e.target.value)}
-              className="mt-1 block w-full"
+              className="mt-1 block w-full h-10 p-1 rounded-md border border-gray-300"
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Background Color</label>
+          <div className="form-group">
+            <label htmlFor="backgroundColor" className="block text-sm font-medium text-gray-700 mb-1">
+              Background Color
+            </label>
             <input
+              id="backgroundColor"
               type="color"
               value={data.colorTheme.background}
               onChange={(e) => updateColorTheme('background', e.target.value)}
-              className="mt-1 block w-full"
+              className="mt-1 block w-full h-10 p-1 rounded-md border border-gray-300"
             />
           </div>
         </div>
@@ -289,43 +341,63 @@ export function ResumeForm({ data, onChange }: {
           </div>
         </div>
         {data.workExperience.map((exp, index) => (
-          <div key={exp.id} className="space-y-2 rounded-lg border p-4">
+          <div key={exp.id} className="space-y-4 rounded-lg border p-4">
             <div className="flex items-center gap-2">
               <GripVertical className="h-4 w-4" />
-              <Input
-                placeholder="Company"
-                value={exp.company}
-                onChange={(e) => updateWorkExperience(index, { company: e.target.value })}
+              <div className="w-full">
+                <label htmlFor={`company-${exp.id}`} className="block text-sm font-medium text-gray-700 mb-1">
+                  Company Name
+                </label>
+                <Input
+                  id={`company-${exp.id}`}
+                  placeholder="Enter company name"
+                  value={exp.company}
+                  onChange={(e) => updateWorkExperience(index, { company: e.target.value })}
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="form-group">
+                <label htmlFor={`jobTitle-${exp.id}`} className="block text-sm font-medium text-gray-700 mb-1">
+                  Job Title
+                </label>
+                <Input
+                  id={`jobTitle-${exp.id}`}
+                  placeholder="Enter job title"
+                  value={exp.jobTitle}
+                  onChange={(e) => updateWorkExperience(index, { jobTitle: e.target.value })}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor={`date-${exp.id}`} className="block text-sm font-medium text-gray-700 mb-1">
+                  Employment Period
+                </label>
+                <Input
+                  id={`date-${exp.id}`}
+                  placeholder="e.g., Jan 2020 - Present"
+                  value={exp.date}
+                  onChange={(e) => updateWorkExperience(index, { date: e.target.value })}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor={`description-${exp.id}`} className="block text-sm font-medium text-gray-700 mb-1">
+                Job Description
+              </label>
+              <RichTextEditor
+                id={`description-${exp.id}`}
+                content={exp.description}
+                onChange={(content) => updateWorkExperience(index, { description: content })}
+              />
+              <WorkExperienceEnhancer
+                currentDescription={exp.description}
+                jobTitle={exp.jobTitle}
+                company={exp.company}
+                onSelect={(enhancedDescription) =>
+                  updateWorkExperience(index, { description: enhancedDescription })
+                }
               />
             </div>
-            <div className="grid grid-cols-2 gap-2">
-              <Input
-                placeholder="Job Title"
-                value={exp.jobTitle}
-                onChange={(e) => updateWorkExperience(index, { jobTitle: e.target.value })}
-              />
-              <Input
-                placeholder="Date"
-                value={exp.date}
-                onChange={(e) => updateWorkExperience(index, { date: e.target.value })}
-              />
-            </div>
-            <RichTextEditor
-              content={exp.description}
-              onChange={(content) => updateWorkExperience(index, { description: content })}
-            />
-            <WorkExperienceEnhancer
-              currentDescription={exp.description}
-              jobTitle={exp.jobTitle}
-              company={exp.company}
-              onSelect={(enhancedDescription) =>
-                updateWorkExperience(index, { description: enhancedDescription })
-              }
-            />
-            {/* <RichTextEditor
-              content={exp.achievements}
-              onChange={(content) => updateWorkExperience(index, { achievements: content })}
-            /> */}
             <div className="space-y-2">
               <h3 className="text-md font-semibold">Projects</h3>
               {exp.projects.map((project, projectIndex) => (
@@ -383,32 +455,56 @@ export function ResumeForm({ data, onChange }: {
           </div>
         </div>
         {data.education.map((edu, index) => (
-          <div key={edu.id} className="space-y-2 rounded-lg border p-4">
+          <div key={edu.id} className="space-y-4 rounded-lg border p-4">
             <div className="flex items-center gap-2">
               <GripVertical className="h-4 w-4" />
+              <div className="w-full">
+                <label htmlFor={`school-${edu.id}`} className="block text-sm font-medium text-gray-700 mb-1">
+                  School/University
+                </label>
+                <Input
+                  id={`school-${edu.id}`}
+                  placeholder="Enter school name"
+                  value={edu.school}
+                  onChange={(e) => updateEducation(index, { school: e.target.value })}
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="form-group">
+                <label htmlFor={`degree-${edu.id}`} className="block text-sm font-medium text-gray-700 mb-1">
+                  Degree & Major
+                </label>
+                <Input
+                  id={`degree-${edu.id}`}
+                  placeholder="e.g., Bachelor of Science in Computer Science"
+                  value={edu.degree}
+                  onChange={(e) => updateEducation(index, { degree: e.target.value })}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor={`eduDate-${edu.id}`} className="block text-sm font-medium text-gray-700 mb-1">
+                  Graduation Date
+                </label>
+                <Input
+                  id={`eduDate-${edu.id}`}
+                  placeholder="e.g., May 2023"
+                  value={edu.date}
+                  onChange={(e) => updateEducation(index, { date: e.target.value })}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor={`gpa-${edu.id}`} className="block text-sm font-medium text-gray-700 mb-1">
+                GPA (Optional)
+              </label>
               <Input
-                placeholder="School"
-                value={edu.school}
-                onChange={(e) => updateEducation(index, { school: e.target.value })}
+                id={`gpa-${edu.id}`}
+                placeholder="e.g., 3.8/4.0"
+                value={edu.gpa}
+                onChange={(e) => updateEducation(index, { gpa: e.target.value })}
               />
             </div>
-            <div className="grid grid-cols-2 gap-2">
-              <Input
-                placeholder="Degree & Major"
-                value={edu.degree}
-                onChange={(e) => updateEducation(index, { degree: e.target.value })}
-              />
-              <Input
-                placeholder="Date"
-                value={edu.date}
-                onChange={(e) => updateEducation(index, { date: e.target.value })}
-              />
-            </div>
-            <Input
-              placeholder="GPA"
-              value={edu.gpa}
-              onChange={(e) => updateEducation(index, { gpa: e.target.value })}
-            />
           </div>
         ))}
         <Button variant="outline" onClick={addEducation} className="w-full">
@@ -419,57 +515,82 @@ export function ResumeForm({ data, onChange }: {
 
       <section className="space-y-4">
         <h2 className="text-lg font-semibold">Skills</h2>
-        <div className="flex flex-wrap gap-2">
-          {data.skills.map((skill, index) => (
-            <div key={index} className="flex items-center bg-gray-100 rounded-full px-3 py-1">
-              <span>{skill}</span>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="ml-2 h-5 w-5 p-0"
-                onClick={() => removeSkill(index)}
-              >
-                <X className="h-3 w-3" />
-              </Button>
+        <div className="space-y-4">
+          <div className="flex flex-wrap gap-2">
+            {data.skills.map((skill, index) => (
+              <div key={index} className="flex items-center bg-gray-100 rounded-full px-3 py-1">
+                <span>{skill}</span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="ml-2 h-5 w-5 p-0"
+                  onClick={() => removeSkill(index)}
+                  aria-label={`Remove ${skill}`}
+                >
+                  <X className="h-3 w-3" />
+                </Button>
+              </div>
+            ))}
+          </div>
+          <div className="flex gap-2">
+            <div className="flex-1">
+              <label htmlFor="newSkill" className="block text-sm font-medium text-gray-700 mb-1">
+                Add New Skill
+              </label>
+              <Input
+                id="newSkill"
+                placeholder="Enter a skill"
+                value={newSkill}
+                onChange={(e) => setNewSkill(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    addSkill()
+                  }
+                }}
+              />
             </div>
-          ))}
-        </div>
-        <div className="flex gap-2">
-          <Input
-            placeholder="Add a skill"
-            value={newSkill}
-            onChange={(e) => setNewSkill(e.target.value)}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter') {
-                e.preventDefault()
-                addSkill()
-              }
-            }}
-          />
-          <Button onClick={addSkill}>Add</Button>
+            <Button 
+              onClick={addSkill}
+              className="self-end"
+            >
+              Add
+            </Button>
+          </div>
         </div>
       </section>
 
       <section className="space-y-4">
         <h2 className="text-lg font-semibold">Custom Fields</h2>
         {data.customFields.map((field) => (
-          <div key={field.id} className="flex items-center gap-2">
-            <Input
-              placeholder="Label"
-              value={field.label}
-              onChange={(e) => updateCustomField(field.id, { label: e.target.value })}
-              className="flex-1"
-            />
-            <Input
-              placeholder="Value"
-              value={field.value}
-              onChange={(e) => updateCustomField(field.id, { value: e.target.value })}
-              className="flex-1"
-            />
+          <div key={field.id} className="grid grid-cols-[1fr,1fr,auto] gap-4 items-end">
+            <div className="form-group">
+              <label htmlFor={`label-${field.id}`} className="block text-sm font-medium text-gray-700 mb-1">
+                Field Label
+              </label>
+              <Input
+                id={`label-${field.id}`}
+                placeholder="Enter label"
+                value={field.label}
+                onChange={(e) => updateCustomField(field.id, { label: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor={`value-${field.id}`} className="block text-sm font-medium text-gray-700 mb-1">
+                Field Value
+              </label>
+              <Input
+                id={`value-${field.id}`}
+                placeholder="Enter value"
+                value={field.value}
+                onChange={(e) => updateCustomField(field.id, { value: e.target.value })}
+              />
+            </div>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => removeCustomField(field.id)}
+              aria-label={`Remove ${field.label} field`}
             >
               <X className="h-4 w-4" />
             </Button>
