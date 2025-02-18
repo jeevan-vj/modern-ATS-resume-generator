@@ -57,7 +57,7 @@ export interface CustomField {
   content: string
 }
 
-interface Project {
+export interface Project {
   id: string
   name: string
   description: string
@@ -68,7 +68,7 @@ interface Project {
   duration: string
 }
 
-interface TechStack {
+export interface TechStack {
   category: string  // e.g., "Frontend", "Backend", "DevOps"
   technologies: {
     name: string
@@ -77,7 +77,7 @@ interface TechStack {
   }[]
 }
 
-interface CompanyDetails {
+export interface CompanyDetails {
   industry: string
   size: string  // e.g., "Startup (1-50)", "Medium (51-500)", "Large (500+)"
   type: string  // e.g., "Product", "Service", "Consulting"

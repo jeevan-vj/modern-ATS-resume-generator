@@ -23,7 +23,24 @@ export function ResumeForm({ data, onChange }: {
       ...data,
       workExperience: [
         ...data.workExperience,
-        { id: crypto.randomUUID(), company: "", jobTitle: "", date: "", description: "", projects: [] }
+        {
+          id: crypto.randomUUID(),
+          company: "",
+          jobTitle: "",
+          date: "",
+          description: "",
+          projects: [],
+          techStack: [],
+          teamSize: "",
+          responsibilities: [],
+          companyDetails: {
+            industry: "",
+            size: "",
+            type: ""
+          },
+          achievements: "",
+          keywords: []
+        }
       ]
     })
   }
@@ -51,6 +68,12 @@ export function ResumeForm({ data, onChange }: {
   const updateProject = (workExpIndex: number, projectIndex: number, project: Partial<Project>) => {
     const newWorkExperience = [...data.workExperience]
     newWorkExperience[workExpIndex].projects[projectIndex] = { ...newWorkExperience[workExpIndex].projects[projectIndex], ...project }
+    onChange({ ...data, workExperience: newWorkExperience })
+  }
+
+  const removeProject = (workExpIndex: number, projectIndex: number) => {
+    const newWorkExperience = [...data.workExperience]
+    newWorkExperience[workExpIndex].projects.splice(projectIndex, 1)
     onChange({ ...data, workExperience: newWorkExperience })
   }
 
@@ -113,7 +136,12 @@ export function ResumeForm({ data, onChange }: {
         ...data,
         customFields: [
           ...data.customFields,
-          { id: crypto.randomUUID(), ...newCustomField }
+          {
+            id: crypto.randomUUID(),
+            ...newCustomField,
+            title: newCustomField.label,
+            content: newCustomField.value
+          }
         ]
       })
       setNewCustomField({ label: "", value: "" })
@@ -385,7 +413,6 @@ export function ResumeForm({ data, onChange }: {
                 Job Description
               </label>
               <RichTextEditor
-                id={`description-${exp.id}`}
                 content={exp.description}
                 onChange={(content) => updateWorkExperience(index, { description: content })}
               />
@@ -402,11 +429,23 @@ export function ResumeForm({ data, onChange }: {
               <h3 className="text-md font-semibold">Projects</h3>
               {exp.projects.map((project, projectIndex) => (
                 <div key={project.id} className="space-y-2 rounded-lg border p-4">
-                  <Input
-                    placeholder="Project Name"
-                    value={project.name}
-                    onChange={(e) => updateProject(index, projectIndex, { name: e.target.value })}
-                  />
+                  <div className="flex justify-between items-center">
+                    <Input
+                      placeholder="Project Name"
+                      value={project.name}
+                      onChange={(e) => updateProject(index, projectIndex, { name: e.target.value })}
+                      className="flex-1"
+                    />
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => removeProject(index, projectIndex)}
+                      className="ml-2"
+                      aria-label={`Delete ${project.name || 'project'}`}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
                   <RichTextEditor
                     content={project.description}
                     onChange={(content) => updateProject(index, projectIndex, { description: content })}
