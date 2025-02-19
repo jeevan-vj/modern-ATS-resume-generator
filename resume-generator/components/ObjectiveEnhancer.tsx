@@ -59,7 +59,7 @@ export function ObjectiveEnhancer({
         }}
         className="absolute right-2 top-2"
       >
-        <Wand2 className="h-4 w-4" />
+        <Wand2 className="h-8 w-8 text-gold font-bold animate-pulse" />
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>

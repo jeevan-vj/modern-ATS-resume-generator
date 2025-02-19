@@ -140,3 +140,6 @@ body {
 .prose em {
   font-style: italic;
 }
+.text-gold {
+  color: gold;
+}

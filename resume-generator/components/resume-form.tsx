@@ -44,7 +44,7 @@ function SectionWrapper({
           <div className="flex items-center justify-between mb-2">
             <span className="text-lg font-semibold">{title}</span>
             {showScore && (
-              <span className="text-sm font-medium text-gray-500">
+              <span className="text-sm font-medium text-gray-500 ml-5">
                 {Math.round(completionScore)}%
               </span>
             )}
