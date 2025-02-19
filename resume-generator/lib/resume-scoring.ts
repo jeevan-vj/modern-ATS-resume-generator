@@ -63,7 +63,7 @@ export function calculateResumeCompleteness(data: ResumeData): {
   ])
 
   // Work Experience completeness
-  const workExperienceScores = data.workExperience.map(exp => ({
+  const workExperienceScores = (data.workExperience || []).map(exp => ({
     base: calculateSectionScore(exp, ['company', 'jobTitle', 'date', 'description']),
     description: calculateDescriptionQuality(exp.description)
   }))
@@ -72,7 +72,7 @@ export function calculateResumeCompleteness(data: ResumeData): {
     : 0
 
   // Education completeness
-  const educationScores = data.education.map(edu => 
+  const educationScores = (data.education || []).map(edu => 
     calculateSectionScore(edu, ['school', 'degree', 'date'])
   )
   const educationScore = educationScores.length 
@@ -80,11 +80,11 @@ export function calculateResumeCompleteness(data: ResumeData): {
     : 0
 
   // Skills completeness
-  const skillsScore = data.skills.length > 0 ? 100 : 0
+  const skillsScore = (data.skills || []).length > 0 ? 100 : 0
 
   // Projects completeness
-  const projectScores = data.workExperience.flatMap(exp => 
-    exp.projects.map(proj => calculateSectionScore(proj, ['name', 'description', 'techStack']))
+  const projectScores = (data.workExperience || []).flatMap(exp => 
+    (exp.projects || []).map(proj => calculateSectionScore(proj, ['name', 'description', 'techStack']))
   )
   const projectsScore = projectScores.length 
     ? projectScores.reduce((acc, curr) => acc + curr, 0) / projectScores.length
@@ -92,8 +92,8 @@ export function calculateResumeCompleteness(data: ResumeData): {
 
   // Description quality scores
   const descriptionScores = {
-    objective: calculateDescriptionQuality(data.personalInfo.objective),
-    workExperience: data.workExperience.map(exp => ({
+    objective: calculateDescriptionQuality(data.personalInfo?.objective || ''),
+    workExperience: (data.workExperience || []).map(exp => ({
       id: exp.id,
       score: calculateDescriptionQuality(exp.description)
     }))

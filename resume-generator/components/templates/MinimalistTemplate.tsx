@@ -11,47 +11,49 @@ export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, v
   <div className="space-y-6 font-sans">
     <header className="text-center">
       <EditableField
-        value={data.personalInfo.name}
+        value={data.personalInfo?.name || ''}
         onChange={(value) => onUpdate('personalInfo.name', value)}
         className="text-3xl font-bold text-gray-800"
       />
       <div className="mt-2 flex justify-center flex-wrap gap-4 text-sm text-gray-600">
-        {data.personalInfo.email && (
+        {data.personalInfo?.email && (
           <EditableField
             value={data.personalInfo.email}
             onChange={(value) => onUpdate('personalInfo.email', value)}
           />
         )}
-        {data.personalInfo.phone && (
+        {data.personalInfo?.phone && (
           <EditableField
             value={data.personalInfo.phone}
             onChange={(value) => onUpdate('personalInfo.phone', value)}
           />
         )}
-        {data.personalInfo.website && (
+        {data.personalInfo?.website && (
           <EditableField
             value={data.personalInfo.website}
             onChange={(value) => onUpdate('personalInfo.website', value)}
           />
         )}
-        {data.personalInfo.location && (
+        {data.personalInfo?.location && (
           <EditableField
             value={data.personalInfo.location}
             onChange={(value) => onUpdate('personalInfo.location', value)}
           />
         )}
       </div>
-      <EditableField
-        value={data.personalInfo.objective}
-        onChange={(value) => onUpdate('personalInfo.objective', value)}
-        multiline
-        className="mt-4 text-sm text-gray-600"
-      />
+      {data.personalInfo?.objective && (
+        <EditableField
+          value={data.personalInfo.objective}
+          onChange={(value) => onUpdate('personalInfo.objective', value)}
+          multiline
+          className="mt-4 text-sm text-gray-600"
+        />
+      )}
     </header>
 
     
 
-    {data.workExperience.length > 0 && (
+    {data.workExperience && data.workExperience.length > 0 && (
       <section>
         <h2 className="mb-4 text-lg font-semibold text-gray-700 uppercase tracking-wider">Experience</h2>
         <div className="space-y-6">
@@ -85,27 +87,34 @@ export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, v
                     {exp.projects.map((project) => (
                       <div key={project.id} className="border-l border-gray-200 pl-3">
                         <div className="flex justify-between items-start">
-                          <h5 className="font-medium text-gray-700">{project.name}</h5>
-                          <span className="text-xs text-gray-500">{project.duration}</span>
+                          <h5 className="font-medium text-gray-700">{project?.name || ''}</h5>
+                          <span className="text-xs text-gray-500">{project?.duration || ''}</span>
                         </div>
-                        {/* <p className="text-sm text-gray-600 mt-1">{project.description}</p> */}
-                        <div className="text-sm text-gray-600 mt-1" dangerouslySetInnerHTML={{ __html: project.description }} />
-                        <div className="mt-2">
-                          <div className="flex flex-wrap gap-1">
-                            {project.techStack.map((tech, index) => (
-                              <span
-                                key={index}
-                                className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-700"
-                              >
-                                {tech}
-                              </span>
-                            ))}
+                        {project?.description && (
+                          <div className="text-sm text-gray-600 mt-1">
+                            <HTMLContent html={project.description} />
                           </div>
-                        </div>
-                        <div className="mt-2 text-sm text-gray-600 prose prose-sm max-w-none">
-                          <HTMLContent html={project.achievements} />
-                        </div>
-                        {project.url && (
+                        )}
+                        {project?.techStack && project.techStack.length > 0 && (
+                          <div className="mt-2">
+                            <div className="flex flex-wrap gap-1">
+                              {project.techStack.map((tech, index) => (
+                                <span
+                                  key={index}
+                                  className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-700"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {project?.achievements && (
+                          <div className="mt-2 text-sm text-gray-600 prose prose-sm max-w-none">
+                            <HTMLContent html={project.achievements} />
+                          </div>
+                        )}
+                        {project?.url && (
                           <a
                             href={project.url}
                             target="_blank"
@@ -200,15 +209,15 @@ export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, v
       </section>
     )}
 
-{data.customFields && data.customFields.length > 0 && (
+{(data.customFields && data.customFields.length > 0) && (
       <section>
         <h2 className="mb-4 text-lg font-semibold text-gray-700 uppercase tracking-wider">Additional Information</h2>
         <div className="space-y-4">
           {data.customFields.map((field) => (
             <div key={field.id} className="border-l-2 border-gray-100 pl-4">
-              <h3 className="font-medium text-gray-700 mb-2">{field.title}</h3>
+              <h3 className="font-medium text-gray-700 mb-2">{field?.title || ''}</h3>
               <div className="text-sm text-gray-600 prose prose-sm max-w-none">
-                <HTMLContent html={field.content.replace(/\n/g, '<br />')} />
+                <HTMLContent html={(field?.content || '').replace(/\n/g, '<br />')} />
               </div>
             </div>
           ))}
