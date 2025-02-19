@@ -50,28 +50,6 @@ export const ModernTemplate = (data: ResumeData, onUpdate: (field: string, value
       </div>
     </header>
 
-    {data.customFields.length > 0 && (
-      <section>
-        <h2 className="mb-2 text-lg font-semibold text-gray-700">Additional Information</h2>
-        <div className="grid grid-cols-2 gap-2">
-          {data.customFields.map((field) => (
-            <div key={field.id}>
-              <EditableField
-                value={field.label}
-                onChange={(value) => onUpdate(`customFields.${field.id}.label`, value)}
-                className="font-medium"
-              />
-              :&nbsp;
-              <EditableField
-                value={field.value}
-                onChange={(value) => onUpdate(`customFields.${field.id}.value`, value)}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-    )}
-
     {data?.workExperience && data.workExperience.length > 0 && (
       <section>
         <h2 className="mb-4 text-xl font-semibold text-gray-700">Professional Experience</h2>

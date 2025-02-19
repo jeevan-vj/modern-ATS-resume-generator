@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { X } from 'lucide-react'
+import { RichTextEditor } from "@/components/RichTextEditor"
 import type { ResumeData, CustomField } from "@/lib/types"
 
 interface CustomFieldsSectionProps {
@@ -10,30 +11,40 @@ interface CustomFieldsSectionProps {
 }
 
 export function CustomFieldsSection({ data, onChange }: CustomFieldsSectionProps) {
-  const [newCustomField, setNewCustomField] = useState({ label: "", value: "" })
+  const [newCustomField, setNewCustomField] = useState({ title: "" })
 
   const addCustomField = () => {
-    if (newCustomField.label.trim() !== "" && newCustomField.value.trim() !== "") {
+    if (newCustomField.title.trim() !== "") {
       onChange({
         ...data,
         customFields: [
           ...data.customFields,
           {
             id: crypto.randomUUID(),
-            ...newCustomField,
-            title: newCustomField.label,
-            content: newCustomField.value
+            title: newCustomField.title,
+            content: "",
+            label: newCustomField.title,
+            value: ""
           }
         ]
       })
-      setNewCustomField({ label: "", value: "" })
+      setNewCustomField({ title: "" })
     }
   }
 
   const updateCustomField = (id: string, field: Partial<CustomField>) => {
-    const newCustomFields = data.customFields.map(cf => 
-      cf.id === id ? { ...cf, ...field } : cf
-    )
+    const newCustomFields = data.customFields.map(cf => {
+      if (cf.id === id) {
+        // Sync title/content with label/value when either pair is updated
+        const newField = { ...cf, ...field }
+        if (field.title) newField.label = field.title
+        if (field.content) newField.value = field.content
+        if (field.label) newField.title = field.label
+        if (field.value) newField.content = field.value
+        return newField
+      }
+      return cf
+    })
     onChange({ ...data, customFields: newCustomFields })
   }
 
@@ -43,56 +54,49 @@ export function CustomFieldsSection({ data, onChange }: CustomFieldsSectionProps
   }
 
   return (
-    <section className="space-y-4">
-      <h2 className="text-lg font-semibold">Custom Fields</h2>
+    <section className="space-y-4 mt-8 border-t pt-8">
+      <h2 className="text-lg font-semibold text-gray-800">Additional Information</h2>
+      <p className="text-sm text-gray-600 mb-4">Add any other relevant information or custom sections to your resume.</p>
+      
       {data.customFields.map((field) => (
-        <div key={field.id} className="grid grid-cols-[1fr,1fr,auto] gap-4 items-end">
-          <div className="form-group">
-            <label htmlFor={`label-${field.id}`} className="block text-sm font-medium text-gray-700 mb-1">
-              Field Label
-            </label>
+        <div key={field.id} className="group relative space-y-2 bg-gray-50 rounded-md p-4 transition-all">
+          <div className="flex items-center gap-4">
             <Input
-              id={`label-${field.id}`}
-              placeholder="Enter label"
-              value={field.label}
-              onChange={(e) => updateCustomField(field.id, { label: e.target.value })}
+              id={`title-${field.id}`}
+              placeholder="Section Title"
+              value={field.title}
+              onChange={(e) => updateCustomField(field.id, { title: e.target.value })}
+              className="font-medium bg-transparent border-0 px-0 focus-visible:ring-0"
+            />
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => removeCustomField(field.id)}
+              className="opacity-0 group-hover:opacity-100 transition-opacity"
+              aria-label={`Remove ${field.title} section`}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+          <div className="pl-0">
+            <RichTextEditor
+              content={field.content}
+              onChange={(content) => updateCustomField(field.id, { content })}
             />
           </div>
-          <div className="form-group">
-            <label htmlFor={`value-${field.id}`} className="block text-sm font-medium text-gray-700 mb-1">
-              Field Value
-            </label>
-            <Input
-              id={`value-${field.id}`}
-              placeholder="Enter value"
-              value={field.value}
-              onChange={(e) => updateCustomField(field.id, { value: e.target.value })}
-            />
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => removeCustomField(field.id)}
-            aria-label={`Remove ${field.label} field`}
-          >
-            <X className="h-4 w-4" />
-          </Button>
         </div>
       ))}
-      <div className="flex items-center gap-2">
+      
+      <div className="flex items-center gap-2 mt-4">
         <Input
-          placeholder="New Field Label"
-          value={newCustomField.label}
-          onChange={(e) => setNewCustomField({ ...newCustomField, label: e.target.value })}
+          placeholder="New Section Title"
+          value={newCustomField.title}
+          onChange={(e) => setNewCustomField({ ...newCustomField, title: e.target.value })}
           className="flex-1"
         />
-        <Input
-          placeholder="New Field Value"
-          value={newCustomField.value}
-          onChange={(e) => setNewCustomField({ ...newCustomField, value: e.target.value })}
-          className="flex-1"
-        />
-        <Button onClick={addCustomField}>Add</Button>
+        <Button onClick={addCustomField} variant="outline" size="sm">
+          Add Section
+        </Button>
       </div>
     </section>
   )

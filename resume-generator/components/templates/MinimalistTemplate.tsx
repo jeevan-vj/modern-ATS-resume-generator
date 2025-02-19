@@ -55,8 +55,6 @@ export const MinimalistTemplate: React.FC<MinimalistTemplateProps> = ({ onUpdate
       )}
     </header>
 
-    
-
     {data.workExperience && data.workExperience.length > 0 && (
       <section>
         <h2 className="mb-4 text-lg font-semibold text-gray-700 uppercase tracking-wider">Experience</h2>
@@ -213,7 +211,7 @@ export const MinimalistTemplate: React.FC<MinimalistTemplateProps> = ({ onUpdate
       </section>
     )}
 
-{(data.customFields && data.customFields.length > 0) && (
+    {data.customFields && data.customFields.length > 0 && (
       <section>
         <h2 className="mb-4 text-lg font-semibold text-gray-700 uppercase tracking-wider">Additional Information</h2>
         <div className="space-y-4">
