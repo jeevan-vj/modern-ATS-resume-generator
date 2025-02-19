@@ -2,12 +2,16 @@ import React from 'react'
 import { ResumeData } from "@/lib/types"
 import { EditableField } from "@/components/editable-field"
 
+interface MinimalistTemplateProps extends ResumeData {
+  onUpdate?: (field: string, value: string) => void;
+}
+
 // Add this utility component for HTML rendering
 const HTMLContent = ({ html }: { html: string }) => {
   return <div dangerouslySetInnerHTML={{ __html: html }} />
 }
 
-export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, value: string) => void) => (
+export const MinimalistTemplate: React.FC<MinimalistTemplateProps> = ({ onUpdate = () => {}, ...data }) => (
   <div className="space-y-6 font-sans">
     <header className="text-center">
       <EditableField
