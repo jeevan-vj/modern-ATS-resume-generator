@@ -7,13 +7,15 @@ import { Textarea } from "@/components/ui/textarea"
 import { Upload } from 'lucide-react'
 import type { ResumeData } from "@/lib/types"
 import { ObjectiveEnhancer } from '../ObjectiveEnhancer'
+import { ProgressIndicator } from "../ui/progress-indicator"
 
 interface PersonalInfoSectionProps {
-  data: ResumeData;
-  onChange: (data: ResumeData) => void;
+  data: ResumeData
+  onChange: (data: ResumeData) => void
+  objectiveScore?: number
 }
 
-export function PersonalInfoSection({ data, onChange }: PersonalInfoSectionProps) {
+export function PersonalInfoSection({ data, onChange, objectiveScore = 0 }: PersonalInfoSectionProps) {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,9 +53,23 @@ export function PersonalInfoSection({ data, onChange }: PersonalInfoSectionProps
           />
         </div>
         <div className="form-group">
-          <label htmlFor="objective" className="block text-sm font-medium text-gray-700 mb-1">
-            Professional Summary
-          </label>
+          <div className="flex justify-between items-center mb-1">
+            <label htmlFor="objective" className="block text-sm font-medium text-gray-700">
+              Professional Summary
+            </label>
+            {objectiveScore > 0 && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-gray-500">Quality Score:</span>
+                <ProgressIndicator
+                  value={objectiveScore}
+                  size="sm"
+                  className="w-24"
+                  color={objectiveScore >= 80 ? "success" : objectiveScore >= 50 ? "warning" : "error"}
+                  showValue={true}
+                />
+              </div>
+            )}
+          </div>
           <div className="relative">
             <Textarea
               id="objective"

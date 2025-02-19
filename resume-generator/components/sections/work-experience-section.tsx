@@ -4,15 +4,21 @@ import { WorkExperienceEnhancer } from '@/components/WorkExperienceEnhancer'
 import { RichTextEditor } from '@/components/RichTextEditor'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Plus, GripVertical, Eye, ArrowUp, ArrowDown, X } from 'lucide-react'
+import { Plus, GripVertical, Eye, ArrowUp, ArrowDown, X, Info } from 'lucide-react'
 import type { ResumeData, WorkExperience, Project } from "@/lib/types"
+import { ProgressIndicator } from "../ui/progress-indicator"
 
 interface WorkExperienceSectionProps {
-  data: ResumeData;
-  onChange: (data: ResumeData) => void;
+  data: ResumeData
+  onChange: (data: ResumeData) => void
+  descriptionScores?: { id: string; score: number }[]
 }
 
-export function WorkExperienceSection({ data, onChange }: WorkExperienceSectionProps) {
+export function WorkExperienceSection({ 
+  data, 
+  onChange,
+  descriptionScores = []
+}: WorkExperienceSectionProps) {
   const addWorkExperience = () => {
     onChange({
       ...data,
@@ -75,6 +81,16 @@ export function WorkExperienceSection({ data, onChange }: WorkExperienceSectionP
     onChange({ ...data, workExperience: newWorkExperience })
   }
 
+  const getScoreForDescription = (id: string) => {
+    return descriptionScores.find(score => score.id === id)?.score || 0
+  }
+
+  const getQualityColor = (score: number) => {
+    if (score >= 80) return "success"
+    if (score >= 50) return "warning"
+    return "error"
+  }
+
   return (
     <section className="space-y-4">
       <div className="flex items-center justify-between">
@@ -126,9 +142,21 @@ export function WorkExperienceSection({ data, onChange }: WorkExperienceSectionP
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor={`description-${exp.id}`} className="block text-sm font-medium text-gray-700 mb-1">
-              Job Description
-            </label>
+            <div className="flex justify-between items-center mb-1">
+              <label htmlFor={`description-${exp.id}`} className="block text-sm font-medium text-gray-700">
+                Job Description
+              </label>
+              <div className="flex items-center gap-2">
+                <Info className="h-4 w-4 text-gray-400" title="Quality score based on action verbs, metrics, and technical terms" />
+                <ProgressIndicator
+                  value={getScoreForDescription(exp.id)}
+                  size="sm"
+                  className="w-24"
+                  color={getQualityColor(getScoreForDescription(exp.id))}
+                  showValue={true}
+                />
+              </div>
+            </div>
             <RichTextEditor
               content={exp.description}
               onChange={(content) => updateWorkExperience(index, { description: content })}
