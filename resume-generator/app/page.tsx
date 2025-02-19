@@ -8,6 +8,7 @@ import Link from "next/link"
 import { ArrowRight, CheckCircle, Sparkles, Star } from "lucide-react"
 import { ResumeData } from "@/lib/types"
 import { templates } from "@/lib/templates"
+import { FileUpload } from "@/components/file-upload"
 
 // Sample resume data
 const sampleData: ResumeData = {
@@ -97,6 +98,29 @@ export default function Page() {
             </motion.div>
           </motion.div>
         </section>
+
+        {/* Upload Resume Section */}
+        {/* <section className="container py-16">
+          <motion.div
+            className="max-w-4xl mx-auto text-center space-y-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl font-bold">
+              Upload Your Existing Resume
+            </h2>
+            <p className="text-gray-600">
+              We&apos;ll analyze and optimize your resume for ATS systems
+            </p>
+            <FileUpload 
+              onUploadComplete={(data) => {
+                console.log('Resume parsed:', data)
+                // Handle the parsed resume data here
+              }} 
+            />
+          </motion.div>
+        </section> */}
 
         {/* Features Section */}
         <section className="container py-16">

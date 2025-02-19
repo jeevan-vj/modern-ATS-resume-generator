@@ -2,71 +2,62 @@ import React from 'react'
 import { ResumeData } from "@/lib/types"
 import { EditableField } from "@/components/editable-field"
 
-export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, value: string) => void) => (
+interface MinimalistTemplateProps extends ResumeData {
+  onUpdate?: (field: string, value: string) => void;
+}
+
+// Add this utility component for HTML rendering
+const HTMLContent = ({ html }: { html: string }) => {
+  return <div dangerouslySetInnerHTML={{ __html: html }} />
+}
+
+export const MinimalistTemplate: React.FC<MinimalistTemplateProps> = ({ onUpdate = () => {}, ...data }) => (
   <div className="space-y-6 font-sans">
     <header className="text-center">
       <EditableField
-        value={data.personalInfo.name}
+        value={data.personalInfo?.name || ''}
         onChange={(value) => onUpdate('personalInfo.name', value)}
         className="text-3xl font-bold text-gray-800"
       />
       <div className="mt-2 flex justify-center flex-wrap gap-4 text-sm text-gray-600">
-        {data.personalInfo.email && (
+        {data.personalInfo?.email && (
           <EditableField
             value={data.personalInfo.email}
             onChange={(value) => onUpdate('personalInfo.email', value)}
           />
         )}
-        {data.personalInfo.phone && (
+        {data.personalInfo?.phone && (
           <EditableField
             value={data.personalInfo.phone}
             onChange={(value) => onUpdate('personalInfo.phone', value)}
           />
         )}
-        {data.personalInfo.website && (
+        {data.personalInfo?.website && (
           <EditableField
             value={data.personalInfo.website}
             onChange={(value) => onUpdate('personalInfo.website', value)}
           />
         )}
-        {data.personalInfo.location && (
+        {data.personalInfo?.location && (
           <EditableField
             value={data.personalInfo.location}
             onChange={(value) => onUpdate('personalInfo.location', value)}
           />
         )}
       </div>
-      <EditableField
-        value={data.personalInfo.objective}
-        onChange={(value) => onUpdate('personalInfo.objective', value)}
-        multiline
-        className="mt-4 text-sm text-gray-600"
-      />
+      {data.personalInfo?.objective && (
+        <EditableField
+          value={data.personalInfo.objective}
+          onChange={(value) => onUpdate('personalInfo.objective', value)}
+          multiline
+          className="mt-4 text-sm text-gray-600"
+        />
+      )}
     </header>
 
-    {data.customFields.length > 0 && (
-      <section>
-        <h2 className="mb-2 text-lg font-semibold text-gray-700 uppercase tracking-wider">Additional Information</h2>
-        <div className="grid grid-cols-2 gap-2 text-sm">
-          {data.customFields.map((field) => (
-            <div key={field.id}>
-              <EditableField
-                value={field.label}
-                onChange={(value) => onUpdate(`customFields.${field.id}.label`, value)}
-                className="font-medium"
-              />
-              :&nbsp;
-              <EditableField
-                value={field.value}
-                onChange={(value) => onUpdate(`customFields.${field.id}.value`, value)}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-    )}
+    
 
-    {data.workExperience.length > 0 && (
+    {data.workExperience && data.workExperience.length > 0 && (
       <section>
         <h2 className="mb-4 text-lg font-semibold text-gray-700 uppercase tracking-wider">Experience</h2>
         <div className="space-y-6">
@@ -89,12 +80,65 @@ export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, v
                 onChange={(value) => onUpdate(`workExperience.${exp.id}.company`, value)}
                 className="text-sm text-gray-700"
               />
-              <EditableField
-                value={exp.description}
-                onChange={(value) => onUpdate(`workExperience.${exp.id}.description`, value)}
-                multiline
-                className="mt-2 text-sm text-gray-600"
-              />
+              <div className="mt-2 text-sm text-gray-600 prose prose-sm max-w-none">
+                <HTMLContent html={exp.description} />
+              </div>
+
+              {exp.projects && exp.projects.length > 0 && (
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium text-gray-700 mb-2">Key Projects</h4>
+                  <div className="space-y-3">
+                    {exp.projects.map((project) => (
+                      <div key={project.id} className="border-l border-gray-200 pl-3">
+                        <div className="flex justify-between items-start">
+                          <h5 className="font-medium text-gray-700">{project?.name || ''}</h5>
+                          <span className="text-xs text-gray-500">{project?.duration || ''}</span>
+                        </div>
+                        {project?.description && (
+                          <div className="text-sm text-gray-600 mt-1">
+                            <HTMLContent html={project.description} />
+                          </div>
+                        )}
+                        {project?.techStack && project.techStack.length > 0 && (
+                          <div className="mt-2">
+                            <div className="flex flex-wrap gap-1">
+                              {project.techStack.map((tech, index) => (
+                                <span
+                                  key={index}
+                                  className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-700"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {project?.achievements && (
+                          <div className="mt-2 text-sm text-gray-600 prose prose-sm max-w-none">
+                            <HTMLContent html={project.achievements} />
+                          </div>
+                        )}
+                        {project?.url && (
+                          <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-gray-600 hover:underline mt-2 inline-block"
+                          >
+                            View Project →
+                          </a>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {exp.techStack && exp.techStack.length > 0 && (
+                <div className="mt-2 text-sm text-gray-600 prose prose-sm max-w-none">
+                  <HTMLContent html={exp.techStack.join(', ')} />
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -131,6 +175,54 @@ export const MinimalistTemplate = (data: ResumeData, onUpdate: (field: string, v
                   className="text-sm text-gray-600"
                 />
               )}
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {data.skills && data.skills.length > 0 && (
+      <section>
+        <h2 className="mb-4 text-lg font-semibold text-gray-700 uppercase tracking-wider">Skills</h2>
+        <div className="flex flex-wrap gap-2">
+          {data.skills.map((skill, index) => (
+            <EditableField
+              key={index}
+              value={skill}
+              onChange={(value) => onUpdate(`skills.${index}`, value)}
+              className="text-sm text-gray-600"
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    {data.certifications && data.certifications.length > 0 && (
+      <section>
+        <h2 className="mb-4 text-lg font-semibold text-gray-700 uppercase tracking-wider">Certifications</h2>
+        <div className="flex flex-wrap gap-2">
+          {data.certifications.map((cert, index) => (
+            <EditableField
+              key={index}
+              value={cert}
+              onChange={(value) => onUpdate(`certifications.${index}`, value)}
+              className="text-sm text-gray-600"
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+{(data.customFields && data.customFields.length > 0) && (
+      <section>
+        <h2 className="mb-4 text-lg font-semibold text-gray-700 uppercase tracking-wider">Additional Information</h2>
+        <div className="space-y-4">
+          {data.customFields.map((field) => (
+            <div key={field.id} className="border-l-2 border-gray-100 pl-4">
+              <h3 className="font-medium text-gray-700 mb-2">{field?.title || ''}</h3>
+              <div className="text-sm text-gray-600 prose prose-sm max-w-none">
+                <HTMLContent html={(field?.content || '').replace(/\n/g, '<br />')} />
+              </div>
             </div>
           ))}
         </div>
