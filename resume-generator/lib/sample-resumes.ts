@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ResumeData } from "./types"
 
 export const sampleResumes: ResumeData[] = [

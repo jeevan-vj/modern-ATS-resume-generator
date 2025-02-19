@@ -1,17 +1,31 @@
+'use client';
+
 import { ResumeData } from "@/lib/types"
 import { generateStandaloneHTML } from "./exportTemplate"
-import ReactDOMServer from 'react-dom/server'
 import { MinimalistTemplate } from "@/components/templates/MinimalistTemplate"
+import { createElement } from 'react'
 
 // Create a static version of the template by removing editable fields
 const createStaticTemplate = (data: ResumeData) => {
   const template = document.createElement('div')
-  template.innerHTML = ReactDOMServer.renderToString(MinimalistTemplate(data, () => {}))
   
-  // Remove all contenteditable attributes
-  template.querySelectorAll('[contenteditable="true"]').forEach(el => {
-    el.removeAttribute('contenteditable')
-  })
+  // Create the template element, passing data and onUpdate as arguments
+  const element = MinimalistTemplate(data, () => {})
+  const root = document.createElement('div')
+  template.appendChild(root)
+  
+  // Using React 18's client-side rendering
+  const { createRoot } = require('react-dom/client')
+  const clientRoot = createRoot(root)
+  clientRoot.render(element)
+  
+  // Wait for the content to be rendered
+  setTimeout(() => {
+    // Remove all contenteditable attributes
+    template.querySelectorAll('[contenteditable="true"]').forEach(el => {
+      el.removeAttribute('contenteditable')
+    })
+  }, 0)
 
   return template.innerHTML
 }

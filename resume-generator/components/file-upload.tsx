@@ -75,6 +75,7 @@ export function FileUpload({ onUploadComplete }: FileUploadProps) {
           email: result.data.personal_info.email || '',
           phone: result.data.personal_info.phone || '',
           location: result.data.personal_info.location || '',
+          website: result.data.personal_info.website || '',  // Added missing required field
           objective: '',
         },
         workExperience: result.data.work_experience.map((exp: any) => ({

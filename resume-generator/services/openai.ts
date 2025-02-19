@@ -20,6 +20,10 @@ export async function parseResume(content: string) {
     return mockParseResume(content);
   }
 
+  if (!openai) {
+    throw new Error('OpenAI client is not initialized');
+  }
+
   try {
     console.log('📏 Content length:', content.length, 'characters');
     console.log('🚀 Sending request to OpenAI API (GPT-4)');
