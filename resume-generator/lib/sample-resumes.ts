@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { ResumeData } from "./types"
+import { systemEngineerSample } from "./system-engineer-sample"
 
 export const sampleResumes: ResumeData[] = [
   {
@@ -731,4 +732,7 @@ export const sampleResumes: ResumeData[] = [
     }
   }
 ]
+
+// Add the system engineer sample to the array
+sampleResumes.push(systemEngineerSample);
 
