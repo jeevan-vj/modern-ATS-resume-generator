@@ -4,6 +4,8 @@ import { ModernTemplate } from "@/components/templates/ModernTemplate"
 import { MinimalistTemplate } from "@/components/templates/MinimalistTemplate"
 import { ProfessionalTemplate } from "@/components/templates/ProfessionalTemplate"
 import { TimelineTemplate } from "@/components/templates/TimelineTemplate"
+import { CompactTemplate } from "@/components/templates/CompactTemplate"
+import { ExecutiveTemplate } from "@/components/templates/ExecutiveTemplate"
 
 export interface Template {
   id: string
@@ -39,6 +41,16 @@ export const templates: Template[] = [
     id: "timeline",
     name: "Timeline",
     render: createTemplateWrapper(TimelineTemplate),
+  },
+  {
+    id: "compact",
+    name: "Compact",
+    render: createTemplateWrapper(CompactTemplate),
+  },
+  {
+    id: "executive",
+    name: "Executive",
+    render: createTemplateWrapper(ExecutiveTemplate),
   },
 ]
 
