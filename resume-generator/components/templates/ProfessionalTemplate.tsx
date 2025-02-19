@@ -2,11 +2,15 @@ import React from 'react'
 import { ResumeData } from "@/lib/types"
 import { EditableField } from "@/components/editable-field"
 
+interface ProfessionalTemplateProps extends ResumeData {
+  onUpdate?: (field: string, value: string) => void;
+}
+
 const HTMLContent = ({ html }: { html: string }) => {
   return <div dangerouslySetInnerHTML={{ __html: html }} />
 }
 
-export const ProfessionalTemplate = (data: ResumeData, onUpdate: (field: string, value: string) => void) => (
+export const ProfessionalTemplate: React.FC<ProfessionalTemplateProps> = ({ onUpdate = () => {}, ...data }) => (
   <div className="space-y-6 font-serif">
     <header className="border-b-2 border-gray-300 pb-4">
       <EditableField

@@ -2,11 +2,15 @@ import React from 'react'
 import { ResumeData } from "@/lib/types"
 import { EditableField } from "@/components/editable-field"
 
+interface ModernTemplateProps extends ResumeData {
+  onUpdate?: (field: string, value: string) => void;
+}
+
 const HTMLContent = ({ html }: { html: string }) => {
   return <div dangerouslySetInnerHTML={{ __html: html }} />
 }
 
-export const ModernTemplate = (data: ResumeData, onUpdate: (field: string, value: string) => void) => (
+export const ModernTemplate: React.FC<ModernTemplateProps> = ({ onUpdate = () => {}, ...data }) => (
   <div className="space-y-6 font-sans">
     <header className="border-b border-gray-300 pb-4">
       <EditableField

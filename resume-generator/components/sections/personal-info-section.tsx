@@ -34,8 +34,9 @@ export function PersonalInfoSection({ data, onChange, objectiveScore = 0 }: Pers
 
   return (
     <section className="space-y-4">
-      <h2 className="text-lg font-semibold">Personal Information</h2>
+      <h2 className="text-base sm:text-lg font-semibold">Personal Information</h2>
       <div className="space-y-4">
+        {/* Name field */}
         <div className="form-group">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
             Full Name
@@ -52,8 +53,10 @@ export function PersonalInfoSection({ data, onChange, objectiveScore = 0 }: Pers
             }
           />
         </div>
+
+        {/* Objective field */}
         <div className="form-group">
-          <div className="flex justify-between items-center mb-1">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-1">
             <label htmlFor="objective" className="block text-sm font-medium text-gray-700">
               Professional Summary
             </label>
@@ -95,7 +98,9 @@ export function PersonalInfoSection({ data, onChange, objectiveScore = 0 }: Pers
             />
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+
+        {/* Contact information */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="form-group">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
               Email Address
@@ -131,7 +136,9 @@ export function PersonalInfoSection({ data, onChange, objectiveScore = 0 }: Pers
             />
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+
+        {/* Website and Location */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="form-group">
             <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-1">
               Portfolio Website
@@ -166,6 +173,8 @@ export function PersonalInfoSection({ data, onChange, objectiveScore = 0 }: Pers
             />
           </div>
         </div>
+
+        {/* Profile Image Upload */}
         <div className="form-group">
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Profile Image
