@@ -50,28 +50,6 @@ export const ProfessionalTemplate = (data: ResumeData, onUpdate: (field: string,
       )}
     </header>
 
-    {data.customFields.length > 0 && (
-      <section>
-        <h2 className="mb-2 text-2xl font-semibold text-gray-800">Additional Information</h2>
-        <div className="grid grid-cols-2 gap-2">
-          {data.customFields.map((field) => (
-            <div key={field.id}>
-              <EditableField
-                value={field.label}
-                onChange={(value) => onUpdate(`customFields.${field.id}.label`, value)}
-                className="font-medium"
-              />
-              :&nbsp;
-              <EditableField
-                value={field.value}
-                onChange={(value) => onUpdate(`customFields.${field.id}.value`, value)}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-    )}
-
     {data?.workExperience && data.workExperience.length > 0 && (
       <section>
         <h2 className="mb-4 text-2xl font-semibold text-gray-700">Professional Experience</h2>
@@ -206,6 +184,22 @@ export const ProfessionalTemplate = (data: ResumeData, onUpdate: (field: string,
               onChange={(value) => onUpdate(`certifications.${index}`, value)}
               className="text-sm text-gray-600"
             />
+          ))}
+        </div>
+      </section>
+    )}
+
+    {data.customFields && data.customFields.length > 0 && (
+      <section>
+        <h2 className="mb-4 text-2xl font-semibold text-gray-800">Additional Information</h2>
+        <div className="space-y-4">
+          {data.customFields.map((field) => (
+            <div key={field.id} className="border-l-2 border-gray-200 pl-4">
+              <h3 className="font-medium text-gray-700 mb-2">{field.title}</h3>
+              <div className="text-sm text-gray-600 prose prose-sm max-w-none">
+                <HTMLContent html={field.content.replace(/\n/g, '<br />')} />
+              </div>
+            </div>
           ))}
         </div>
       </section>

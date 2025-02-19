@@ -8,29 +8,37 @@ import { TimelineTemplate } from "@/components/templates/TimelineTemplate"
 export interface Template {
   id: string
   name: string
-  render: (data: ResumeData, onUpdate: (field: string, value: string) => void) => JSX.Element
+  render: (data: ResumeData, onUpdate: (field: string, value: string) => void) => React.JSX.Element
+}
+
+const createTemplateWrapper = (
+  TemplateComponent: React.ComponentType<any>
+) => {
+  return (data: ResumeData, onUpdate: (field: string, value: string) => void) => {
+    return React.createElement(TemplateComponent, { ...data, onUpdate })
+  }
 }
 
 export const templates: Template[] = [
   {
     id: "modern",
     name: "Modern",
-    render: ModernTemplate,
+    render: createTemplateWrapper(ModernTemplate),
   },
   {
     id: "minimalist",
     name: "Minimalist",
-    render: MinimalistTemplate,
+    render: createTemplateWrapper(MinimalistTemplate),
   },
   {
     id: "professional",
     name: "Professional",
-    render: ProfessionalTemplate,
+    render: createTemplateWrapper(ProfessionalTemplate),
   },
   {
     id: "timeline",
     name: "Timeline",
-    render: TimelineTemplate,
+    render: createTemplateWrapper(TimelineTemplate),
   },
 ]
 

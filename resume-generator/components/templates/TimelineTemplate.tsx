@@ -65,29 +65,6 @@ export const TimelineTemplate = (data: ResumeData, onUpdate: (field: string, val
       </div>
     </div>
 
-    {data?.customFields && data.customFields.length > 0 && (
-      <section>
-        <h2 className="text-xl font-semibold mb-2" style={{ color: data.colorTheme?.secondary || '#4B5563' }}>Additional Information</h2>
-        <div className="grid grid-cols-2 gap-2">
-          {data.customFields.map((field) => (
-            <div key={field.id}>
-              <EditableField
-                value={field.label}
-                onChange={(value) => onUpdate(`customFields.${field.id}.label`, value)}
-                className="font-medium"
-                style={{ color: data.colorTheme.primary }}
-              />
-              :&nbsp;
-              <EditableField
-                value={field.value}
-                onChange={(value) => onUpdate(`customFields.${field.id}.value`, value)}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-    )}
-
     {data?.workExperience && data.workExperience.length > 0 && (
       <section>
         <h2 className="text-xl font-semibold mb-4" style={{ color: data.colorTheme?.secondary || '#4B5563' }}>Work Experience</h2>
@@ -181,7 +158,7 @@ export const TimelineTemplate = (data: ResumeData, onUpdate: (field: string, val
       </section>
     )}
 
-    {data.education.length > 0 && (
+    {data.education && data.education.length > 0 && (
       <section>
         <h2 className="text-xl font-semibold mb-4" style={{ color: data.colorTheme.secondary }}>Education</h2>
         <div className="space-y-4">
@@ -220,7 +197,7 @@ export const TimelineTemplate = (data: ResumeData, onUpdate: (field: string, val
       </section>
     )}
 
-    {data.skills.length > 0 && (
+    {data.skills && data.skills.length > 0 && (
       <section>
         <h2 className="text-xl font-semibold mb-4" style={{ color: data.colorTheme.secondary }}>Skills</h2>
         <div className="flex flex-wrap gap-2">
@@ -248,6 +225,24 @@ export const TimelineTemplate = (data: ResumeData, onUpdate: (field: string, val
               onChange={(value) => onUpdate(`certifications.${index}`, value)}
               className="text-sm"
             />
+          ))}
+        </div>
+      </section>
+    )}
+
+    {data.customFields && data.customFields.length > 0 && (
+      <section>
+        <h2 className="text-xl font-semibold mb-4" style={{ color: data.colorTheme?.secondary || '#4B5563' }}>Additional Information</h2>
+        <div className="space-y-4">
+          {data.customFields.map((field) => (
+            <div key={field.id} className="relative pl-8 before:absolute before:left-0 before:top-0 before:h-full before:w-[2px]" style={{ 
+              borderLeftColor: data.colorTheme?.primary || '#4B5563'
+            }}>
+              <h3 className="font-medium mb-2" style={{ color: data.colorTheme?.primary || '#4B5563' }}>{field.title}</h3>
+              <div className="text-sm prose prose-sm max-w-none">
+                <HTMLContent html={field.content.replace(/\n/g, '<br />')} />
+              </div>
+            </div>
           ))}
         </div>
       </section>
