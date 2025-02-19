@@ -7,6 +7,7 @@ import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useRef, useState, useEffect } from "react"
 import { Button } from "./ui/button"
+import Image from "next/image"
 
 interface TemplateSelectorProps {
   selectedTemplate: Template
@@ -92,10 +93,14 @@ export function TemplateSelector({ selectedTemplate, onSelectTemplate }: Templat
                   <div className="group relative flex flex-col p-4 sm:p-6 rounded-xl border border-gray-200 cursor-pointer transition-all duration-200 hover:shadow-lg bg-white touch-manipulation">
                     <RadioGroupItem value={template.id} id={template.id} className="sr-only" />
                     <div className="aspect-[3/4] w-full bg-gray-100 rounded-lg mb-3 sm:mb-4 overflow-hidden">
-                      {/* Template preview image would go here */}
-                      <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm sm:text-base">
-                        Preview
-                      </div>
+                      <Image
+                        src={template.previewImage}
+                        alt={`${template.name} template preview`}
+                        width={400}
+                        height={533}
+                        className="w-full h-full object-cover"
+                        priority={template.id === 'modern' || template.id === 'professional'}
+                      />
                     </div>
                     <Label htmlFor={template.id} className="block">
                       <h3 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2">{template.name}</h3>
