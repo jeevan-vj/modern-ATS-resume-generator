@@ -7,6 +7,10 @@ import { Input } from "@/components/ui/input"
 import { Plus, GripVertical, Eye, ArrowUp, ArrowDown, X, Info } from 'lucide-react'
 import type { ResumeData, WorkExperience, Project } from "@/lib/types"
 import { ProgressIndicator } from "../ui/progress-indicator"
+import { ProjectDescriptionEnhancer } from '../ProjectDescriptionEnhancer'
+import { ProjectAchievementsEnhancer } from '../ProjectAchievementsEnhancer'
+// import { ProjectDescriptionEnhancer } from './components/ProjectDescriptionEnhancer'
+// import { ProjectAchievementsEnhancer } from '@/components/ProjectAchievementsEnhancer'
 
 interface WorkExperienceSectionProps {
   data: ResumeData
@@ -147,7 +151,9 @@ export function WorkExperienceSection({
                 Job Description
               </label>
               <div className="flex items-center gap-2">
-                <Info className="h-4 w-4 text-gray-400" title="Quality score based on action verbs, metrics, and technical terms" />
+                <span title="Quality score based on action verbs, metrics, and technical terms">
+                  <Info className="h-4 w-4 text-gray-400" />
+                </span>
                 <ProgressIndicator
                   value={getScoreForDescription(exp.id)}
                   size="sm"
@@ -204,6 +210,14 @@ export function WorkExperienceSection({
                     content={project.description}
                     onChange={(content) => updateProject(index, projectIndex, { description: content })}
                   />
+                  <ProjectDescriptionEnhancer
+                    currentDescription={project.description}
+                    projectName={project.name}
+                    techStack={project.techStack}
+                    onSelect={(enhancedDescription: string) =>
+                      updateProject(index, projectIndex, { description: enhancedDescription })
+                    }
+                  />
                 </div>
                 <div className="space-y-1">
                   <label htmlFor={`project-tech-${project.id}`} className="block text-sm font-medium text-gray-700">
@@ -234,6 +248,15 @@ export function WorkExperienceSection({
                   <RichTextEditor
                     content={project.achievements}
                     onChange={(content) => updateProject(index, projectIndex, { achievements: content })}
+                  />
+                  <ProjectAchievementsEnhancer
+                    currentAchievements={project.achievements}
+                    projectName={project.name}
+                    projectRole={project.role}
+                    techStack={project.techStack}
+                    onSelect={(enhancedAchievements: string) =>
+                      updateProject(index, projectIndex, { achievements: enhancedAchievements })
+                    }
                   />
                 </div>
                 <div className="space-y-1">

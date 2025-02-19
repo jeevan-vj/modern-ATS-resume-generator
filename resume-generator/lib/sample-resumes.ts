@@ -40,7 +40,7 @@ export const sampleResumes: ResumeData[] = [
             duration: "8 months"
           },
           {
-            id: "p2",
+            id: "p2x",
             name: "Developer Platform",
             description: "Built internal developer platform for standardizing microservices development",
             techStack: ["TypeScript", "React", "Node.js", "GraphQL", "Docker", "AWS ECS"],
@@ -489,7 +489,7 @@ export const sampleResumes: ResumeData[] = [
             "duration": "Ongoing"
           },
           {
-            "id": "p2",
+            "id": "p2p",
             "name": "PGDB Application Portal",
             "description": "Developed a portal for managing licenses and certifications for NZ practitioners",
             "techStack": [".NET", "C#", "WEB-API", "Identity Server", "React", "Redux", "Azure"],
@@ -502,7 +502,7 @@ export const sampleResumes: ResumeData[] = [
             "duration": "Ongoing"
           },
           {
-            "id": "p2",
+            "id": "p2s",
             "name": "Southern Cross Applications",
             "description": "Supported and modernized various business-critical applications.",
             "techStack": [".NET", "C#", "WEB-API", "React", "Redux", "Azure", "Angular", "Sitecore"],
@@ -514,7 +514,7 @@ export const sampleResumes: ResumeData[] = [
             "duration": "Ongoing"
           },
           {
-            "id": "p1",
+            "id": "p12",
             "name": "Dairy NZ",
             "description": "Migrate in-app authentication to Azure Entra ID and Azure B2C.",
             "techStack": ["Java", "Azure", "SQL Server", "Azure DevOps"],
@@ -522,10 +522,11 @@ export const sampleResumes: ResumeData[] = [
             "achievements": `<ul>
               <li>Designed and architected user migration to Azure Entra ID and Azure B2C.</li>
               <li>Built CI/CD pipeline for legacy Java applications in Azure DevOps.</li>
-            </ul>`
+            </ul>`,
+            "duration": "Ongoing"
           },
           {
-            "id": "p2",
+            "id": "p21",
             "name": "Ballance Agriculture",
             "description": "Support various line-of-business applications in Ballance Agriculture.",
             "techStack": [".NET", "Azure", "React", "Angular", "SQL Server"],
@@ -533,10 +534,11 @@ export const sampleResumes: ResumeData[] = [
             "achievements": `<ul>
               <li>Designed and architected new application features.</li>
               <li>Migrated Bamboo pipeline to Bitbucket pipelines.</li>
-            </ul>`
+            </ul>`,
+            "duration": "Ongoing"
           },
           {
-            "id": "p3",
+            "id": "p31",
             "name": "CSN",
             "description": "Support CSN legacy (VB.NET and C#) applications, ensuring business continuity and optimizing databases.",
             "techStack": [".NET", "C#", "WEB-API", "Identity Server", "React", "Redux", "Azure", "Angular", "Worker-Services", "Powershell", "Sitecore", "Azure Pipelines", "GitHub Actions"],
@@ -544,12 +546,13 @@ export const sampleResumes: ResumeData[] = [
             "achievements": `<ul>
               <li>Designed and reviewed new features with architects and team.</li>
               <li>Ensured business continuity by supporting urgent user requests.</li>
-            </ul>`
+            </ul>`,
+            "duration": "Ongoing"
           }
         ]
       },
       {
-        "id": "2",
+        "id": "21",
         "company": "Kinesso, Malaysia",
         "jobTitle": "Senior Software Engineer",
         "date": "2020 - 2022",
@@ -561,7 +564,7 @@ export const sampleResumes: ResumeData[] = [
         </ul>`,
         "projects": [
           {
-            "id": "p3",
+            "id": "p311",
             "name": "Magnifiq",
             "description": "Developed a business intelligence analytics tool with custom ETL capabilities",
             "techStack": [".NET", "GRPC", "SQL Server", "AWS", "Docker", "Jenkins", "Snowflake"],
@@ -574,7 +577,7 @@ export const sampleResumes: ResumeData[] = [
             "duration": "2 years"
           },
           {
-            "id": "p4",
+            "id": "p411",
             "name": "Apollo ETL Platform",
             "description": "Built an ETL orchestration platform using Dagster and developed a dashboard UI.",
             "techStack": [".NET", "Web-API", "Dagster", "Python", "AWS", "Angular"],
@@ -588,14 +591,14 @@ export const sampleResumes: ResumeData[] = [
         ]
       },
       {
-        "id": "3",
+        "id": "333",
         "company": "Sitecore, Malaysia",
         "jobTitle": "Software Engineer",
         "date": "2017 - 2022",
         "description": `<ul><li>Developed Sitecore platform modules to enhance CMS functionality with Azure Storage and CDN support.</li><li>Implemented backend services using WEB-API and C#, and developed front-end applications using Angular.</li><li>Set up CI pipelines and automated deployments using PowerShell and TeamCity.</li><li>Participated in R&D, sprint planning, and cross-functional team collaboration.</li></ul>`,
         "projects": [
           {
-            "id": "p5",
+            "id": "p533",
             "name": "Sitecore Azure Marketplace",
             "description": "Enabled users to deploy Sitecore in Azure through a marketplace solution.",
             "techStack": ["Azure", "WEB-API", "Angular", "C#", "PowerShell"],
@@ -607,7 +610,7 @@ export const sampleResumes: ResumeData[] = [
             "duration": "2 years"
           },
           {
-            "id": "p6",
+            "id": "p633",
             "name": "Sitecore Azure Toolkit",
             "description": "Developed tools for deploying Sitecore in Azure environments.",
             "techStack": ["Azure", "PowerShell", "TeamCity"],
@@ -621,14 +624,14 @@ export const sampleResumes: ResumeData[] = [
         ]
       },
       {
-    "id": "1",
+    "id": "144",
     "company": "CMS Pvt Ltd, Colombo, Sri Lanka",
     "jobTitle": "Software Engineer",
     "date": "2015 - 2017",
     "description": "<ul><li>Developed and maintained scalable e-commerce solutions for European markets.</li><li>Modernized legacy systems and implemented responsive front-end designs.</li><li>Optimized database performance and implemented caching mechanisms.</li></ul>",
     "projects": [
       {
-        "id": "p1",
+        "id": "p144",
         "name": "Redcorp E-Commerce Store",
         "description": "B2B E-Commerce store in Europe.",
         "techStack": ["ASP.NET MVC", "SQL Server", "Knockout.js", "HTML5", "SCSS", "Solr"],
@@ -647,14 +650,14 @@ export const sampleResumes: ResumeData[] = [
     ]
   },
   {
-    "id": "2",
+    "id": "255",
     "company": "Bileeta Pvt Ltd, Sri Lanka",
     "jobTitle": "Software Engineer",
     "date": "February 2013 - December 2014",
     "description": "<ul><li>Contributed to the development of an award-winning cloud ERP solution.</li><li>Designed and implemented backend services and real-time features.</li><li>Optimized database performance and implemented stored procedures.</li></ul>",
     "projects": [
       {
-        "id": "p2",
+        "id": "p255",
         "name": "Entution ERP",
         "description": "Award-winning journey-based cloud ERP solution.",
         "techStack": ["SQL Server", "ASP.NET", "JavaScript", "jQuery", "HTML", "WEB-API", "SignalR", "Highcharts", "JSON", "SQL CLR"],
@@ -672,7 +675,7 @@ export const sampleResumes: ResumeData[] = [
     ],
     "education": [
       {
-        "id": "1",
+        "id": "166",
         "school": "National School of Business Management, Sri Lanka",
         "degree": "Bachelor of Science in Management Information Systems",
         "date": "2014",
@@ -696,7 +699,7 @@ export const sampleResumes: ResumeData[] = [
     ],
     "customFields": [
       {
-        "id": "3",
+        "id": "3777",
         "title": "Personal Projects",
         "content": `• Resume Pro (resumepro.iamjeevan.com)
 - Built an ATS-friendly resume generator using Next.js, React, and Tailwind CSS
