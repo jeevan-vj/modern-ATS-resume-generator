@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState, useEffect } from 'react'
-import { Download, FileText, FileCode } from 'lucide-react' // Add FileCode import
+import { Download, FileText, FileCode, Printer } from 'lucide-react' // Add Printer icon
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import type { ResumeData } from "@/lib/types"
@@ -51,6 +51,35 @@ export function ResumePreview({ data, template, onChange }: { data: ResumeData; 
     })
   }
 
+  const handlePrint = () => {
+    if (!resumeRef.current) return;
+    
+    const printContent = resumeRef.current.innerHTML;
+    const originalBody = document.body.innerHTML;
+    
+    // Create print-specific styles
+    const printStyles = `
+      <style>
+        @page { size: A4; margin: 0; }
+        body { margin: 1cm; }
+        @media print {
+          body { -webkit-print-color-adjust: exact; }
+        }
+      </style>
+    `;
+    
+    // Set only resume content for printing
+    document.body.innerHTML = printStyles + printContent;
+    
+    window.print();
+    
+    // Restore original content
+    document.body.innerHTML = originalBody;
+    
+    // Re-render the component
+    window.location.reload();
+  };
+
   const handleUpdate = (field: string, value: string) => {
     const newData = { ...data }
     set(newData, field, value)
@@ -90,6 +119,14 @@ export function ResumePreview({ data, template, onChange }: { data: ResumeData; 
           )}
         </div>
         <div className="flex items-center gap-2 w-full sm:w-auto order-1 sm:order-2">
+          <Button 
+            variant="outline" 
+            onClick={handlePrint}
+            className="flex-1 sm:flex-none"
+          >
+            <Printer className="mr-2 h-4 w-4" />
+            <span className="sm:inline">Print</span>
+          </Button>
           <Button 
             variant="outline" 
             onClick={() => exportResumeAsHTML(data)}
