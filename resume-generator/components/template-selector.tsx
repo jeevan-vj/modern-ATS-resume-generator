@@ -85,12 +85,17 @@ export function TemplateSelector({ selectedTemplate, onSelectTemplate }: Templat
                     </div>
                     <Label htmlFor={template.id} className="block">
                       <h3 className="text-lg font-semibold mb-2">{template.name}</h3>
-                      <p className="text-sm text-gray-600">Perfect for {template.id === 'modern' ? 'creative roles' : 
-                        template.id === 'professional' ? 'corporate positions' :
-                        template.id === 'minimalist' ? 'clean simplicity' :
-                        template.id === 'executive' ? 'senior positions' :
-                        template.id === 'compact' ? 'dense information' :
-                        'timeline view'}</p>
+                      <p className="text-sm text-gray-600">{
+                        template.id === 'modern' ? 'Creative and contemporary design for digital professionals' :
+                        template.id === 'professional' ? 'Traditional format for corporate positions' :
+                        template.id === 'minimalist' ? 'Clean and focused on essential information' :
+                        template.id === 'executive' ? 'Elegant design for senior leadership roles' :
+                        template.id === 'compact' ? 'Space-efficient for extensive experience' :
+                        template.id === 'timeline' ? 'Visual progression of your career journey' :
+                        template.id === 'chronological' ? 'ATS-friendly format emphasizing work history' :
+                        template.id === 'skills-based' ? 'Highlight technical expertise and achievements' :
+                        'Template preview'
+                      }</p>
                     </Label>
                     <div className={`absolute inset-0 rounded-xl transition-opacity ${
                       selectedTemplate.id === template.id ? 'bg-blue-500/10' : 'bg-transparent'

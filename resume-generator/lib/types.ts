@@ -83,3 +83,10 @@ export interface CompanyDetails {
   type: string  // e.g., "Product", "Service", "Consulting"
 }
 
+export interface Template {
+  id: string
+  name: string
+  description: string
+  render: (data: ResumeData, onUpdate: (field: string, value: string) => void) => React.JSX.Element
+}
+
