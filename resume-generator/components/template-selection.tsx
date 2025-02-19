@@ -53,12 +53,14 @@ export const TemplateSelection: React.FC<TemplateSelectionProps> = ({
   onSelect
 }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 p-2 sm:p-4">
       {templates.map((template) => (
-        <div
+        <button
           key={template.id}
           className={`
-            border rounded-lg p-4 cursor-pointer transition-all
+            block w-full text-left border rounded-lg p-3 sm:p-4 transition-all
+            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+            active:scale-[0.98] touch-manipulation
             ${selectedTemplate === template.id 
               ? 'border-blue-500 bg-blue-50' 
               : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50'
@@ -66,18 +68,19 @@ export const TemplateSelection: React.FC<TemplateSelectionProps> = ({
           `}
           onClick={() => onSelect(template.id)}
         >
-          <div className="aspect-video bg-gray-100 rounded mb-3">
+          <div className="aspect-video bg-gray-100 rounded mb-2 sm:mb-3 overflow-hidden">
             {template.preview && (
               <img
                 src={template.preview}
                 alt={`${template.name} template preview`}
-                className="w-full h-full object-cover rounded"
+                className="w-full h-full object-cover rounded transform transition-transform hover:scale-105"
+                loading="lazy"
               />
             )}
           </div>
-          <h3 className="font-medium text-gray-900 mb-1">{template.name}</h3>
-          <p className="text-sm text-gray-500">{template.description}</p>
-        </div>
+          <h3 className="font-medium text-gray-900 mb-1 text-sm sm:text-base">{template.name}</h3>
+          <p className="text-xs sm:text-sm text-gray-500">{template.description}</p>
+        </button>
       ))}
     </div>
   )

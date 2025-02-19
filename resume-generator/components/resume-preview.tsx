@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Download, FileText, FileCode } from 'lucide-react' // Add FileCode import
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
@@ -12,6 +12,27 @@ import { exportResumeAsHTML } from "@/utils/exportResume"
 
 export function ResumePreview({ data, template, onChange }: { data: ResumeData; template: Template; onChange: (data: ResumeData) => void }) {
   const resumeRef = useRef<HTMLDivElement>(null)
+  const [scale, setScale] = useState(1)
+  const [autoScale, setAutoScale] = useState(true)
+
+  // Add auto-scaling effect
+  useEffect(() => {
+    if (!autoScale || !resumeRef.current) return
+    
+    const updateScale = () => {
+      const containerWidth = resumeRef.current?.parentElement?.clientWidth || 0
+      const contentWidth = 794 // A4 width in pixels
+      if (containerWidth < contentWidth) {
+        setScale(containerWidth / contentWidth)
+      } else {
+        setScale(1)
+      }
+    }
+
+    updateScale()
+    window.addEventListener('resize', updateScale)
+    return () => window.removeEventListener('resize', updateScale)
+  }, [autoScale])
 
   const downloadResume = () => {
     if (!resumeRef.current || !data) return
@@ -42,54 +63,64 @@ export function ResumePreview({ data, template, onChange }: { data: ResumeData; 
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex items-center justify-end border-b bg-white p-4 gap-2">
-        <Button 
-          variant="outline" 
-          onClick={() => exportResumeAsHTML(data)}
-        >
-          <FileCode className="mr-2 h-4 w-4" />
-          Download HTML
-        </Button>
-        <Button onClick={downloadResume}>
-          <FileText className="mr-2 h-4 w-4" />
-          Download PDF
-        </Button>
-      </div>
-      <div className="flex-1 overflow-auto bg-white p-12 shadow-sm">
-        <div ref={resumeRef} className="mx-auto max-w-3xl">
-          {template.render(data, handleUpdate)}
-          {/* {data.workExperience.map((exp) => (
-            <div key={exp.id} className="mb-4">
-              <h3 className="text-lg font-semibold">{exp.company}</h3>
-              <p>{exp.jobTitle} ({exp.date})</p>
-              <div dangerouslySetInnerHTML={{ __html: exp.description }} />
-              <div dangerouslySetInnerHTML={{ __html: exp.achievements }} />
-              {exp.projects && exp.projects.length > 0 && (
-                <div className="mt-2">
-                  <h4 className="text-md font-semibold">Projects</h4>
-                  {exp.projects.map((project) => (
-                    <div key={project.id} className="ml-4">
-                      <h5 className="text-sm font-semibold">{project.name}</h5>
-                      <div dangerouslySetInnerHTML={{ __html: project.description }} />
-                      <p><strong>Tech Stack:</strong> {project.techStack.join(", ")}</p>
-                      <p><strong>Role:</strong> {project.role}</p>
-                      <p><strong>Achievements:</strong></p>
-                      <div dangerouslySetInnerHTML={{ __html: project.achievements }} />
-                      <p><strong>Duration:</strong> {project.duration}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))} */}
+      <div className="sticky top-0 z-10 flex flex-wrap items-center justify-between border-b bg-white p-2 sm:p-4 gap-2">
+        <div className="flex items-center gap-2 order-2 sm:order-1">
+          <div className="flex items-center gap-2">
+            <Switch 
+              id="autoscale" 
+              checked={autoScale}
+              onCheckedChange={setAutoScale}
+            />
+            <label htmlFor="autoscale" className="text-sm whitespace-nowrap">
+              Auto-fit
+            </label>
+          </div>
+          {!autoScale && (
+            <select 
+              value={scale} 
+              onChange={(e) => setScale(Number(e.target.value))}
+              className="text-sm border rounded p-1"
+            >
+              {[0.5, 0.75, 1, 1.25, 1.5].map((value) => (
+                <option key={value} value={value}>
+                  {Math.round(value * 100)}%
+                </option>
+              ))}
+            </select>
+          )}
+        </div>
+        <div className="flex items-center gap-2 w-full sm:w-auto order-1 sm:order-2">
+          <Button 
+            variant="outline" 
+            onClick={() => exportResumeAsHTML(data)}
+            className="flex-1 sm:flex-none"
+          >
+            <FileCode className="mr-2 h-4 w-4" />
+            <span className="sm:inline">Download HTML</span>
+          </Button>
+          <Button 
+            onClick={downloadResume}
+            className="flex-1 sm:flex-none"
+          >
+            <FileText className="mr-2 h-4 w-4" />
+            <span className="sm:inline">Download PDF</span>
+          </Button>
         </div>
       </div>
-      <div className="flex items-center border-t bg-white p-4">
-        <div className="flex items-center gap-2">
-          <Switch id="autoscale" />
-          <label htmlFor="autoscale" className="text-sm">
-            Autoscale
-          </label>
+      
+      <div className="flex-1 overflow-auto bg-gray-100 p-4 sm:p-8">
+        <div 
+          className="mx-auto bg-white shadow-lg transition-transform duration-200"
+          style={{
+            width: '210mm',
+            maxWidth: '100%',
+            transform: `scale(${scale})`,
+            transformOrigin: 'top center'
+          }}
+        >
+          <div ref={resumeRef} className="p-8 sm:p-12">
+            {template.render(data, handleUpdate)}
+          </div>
         </div>
       </div>
     </div>

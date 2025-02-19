@@ -4,11 +4,33 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -81,6 +103,15 @@ body {
 .ProseMirror {
   outline: none;
   min-height: 100px;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  touch-action: manipulation;
+}
+
+@media (max-width: 640px) {
+  .ProseMirror {
+    font-size: 16px; /* Prevent iOS zoom on focus */
+  }
 }
 
 .ProseMirror p.is-editor-empty:first-child::before {
@@ -140,6 +171,38 @@ body {
 .prose em {
   font-style: italic;
 }
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .prose {
+    max-width: none !important;
+  }
+}
+
+/* Touch-friendly styles */
+@media (hover: none) {
+  .hover\:scale-105 {
+    transform: none !important;
+  }
+  
+  button, 
+  [role="button"],
+  select,
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
 .text-gold {
   color: gold;
 }

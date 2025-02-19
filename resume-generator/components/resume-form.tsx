@@ -38,13 +38,14 @@ function SectionWrapper({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
+      className="w-full"
     >
-      <Collapsible defaultOpen={defaultOpen} className="border rounded-lg">
+      <Collapsible defaultOpen={defaultOpen} className="border rounded-lg w-full">
         <CollapsibleTrigger className="px-4 py-3 w-full text-left bg-gray-50 hover:bg-gray-100 rounded-t-lg">
-          <div className="flex items-center justify-between mb-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <span className="text-lg font-semibold">{title}</span>
             {showScore && (
-              <span className="text-sm font-medium text-gray-500 ml-5">
+              <span className="text-sm font-medium text-gray-500">
                 {Math.round(completionScore)}%
               </span>
             )}
@@ -58,7 +59,7 @@ function SectionWrapper({
             />
           )}
         </CollapsibleTrigger>
-        <CollapsibleContent className="p-4 pt-2">
+        <CollapsibleContent className="p-2 sm:p-4">
           {children}
         </CollapsibleContent>
       </Collapsible>
@@ -73,9 +74,9 @@ export function ResumeForm({ data, onChange }: {
   const scores = calculateResumeCompleteness(data)
 
   return (
-    <div className="space-y-4 p-4">
-      <div className="mb-6">
-        <h2 className="text-lg font-semibold mb-2">Overall Resume Completeness</h2>
+    <div className="space-y-4 p-2 sm:p-4">
+      <div className="mb-4 sm:mb-6">
+        <h2 className="text-base sm:text-lg font-semibold mb-2">Overall Resume Completeness</h2>
         <ProgressIndicator 
           value={scores.overall} 
           color={scores.overall >= 80 ? "success" : scores.overall >= 50 ? "warning" : "error"}
