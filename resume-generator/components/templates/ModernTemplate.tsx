@@ -87,7 +87,7 @@ export const ModernTemplate: React.FC<ModernTemplateProps> = ({ onUpdate = () =>
                 <div className="mt-4">
                   <h4 className="text-sm font-medium text-gray-700 mb-2">Key Projects</h4>
                   <div className="space-y-3">
-                    {exp.projects.map((project) => (
+                    {exp.projects?.map((project) => (
                       <div key={project.id} className="border-l border-gray-200 pl-3">
                         <div className="flex justify-between items-start">
                           <h5 className="font-medium text-gray-700">{project?.name || ''}</h5>

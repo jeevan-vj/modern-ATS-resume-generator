@@ -99,7 +99,7 @@ export const CompactTemplate: React.FC<CompactTemplateProps> = ({ onUpdate = () 
               
               {exp.projects && exp.projects.length > 0 && (
                 <div className="mt-2 space-y-2">
-                  {exp.projects.map((project) => (
+                  {exp.projects?.map((project) => (
                     <div key={project.id} className="text-sm">
                       <div className="font-medium text-gray-700">{project.name}</div>
                       {project.description && (

@@ -178,7 +178,7 @@ export function WorkExperienceSection({
           </div>
           <div className="space-y-2">
             <h3 className="text-md font-semibold">Projects</h3>
-            {exp.projects.map((project, projectIndex) => (
+            {exp.projects?.map((project, projectIndex) => (
               <div key={project.id} className="space-y-2 rounded-lg border p-4">
                 <div className="flex justify-between items-center">
                   <div className="flex-1">

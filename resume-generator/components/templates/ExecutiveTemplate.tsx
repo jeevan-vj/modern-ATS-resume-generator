@@ -93,7 +93,7 @@ export const ExecutiveTemplate: React.FC<ExecutiveTemplateProps> = ({ onUpdate =
 
                   {exp.projects && exp.projects.length > 0 && (
                     <div className="mt-3 space-y-3">
-                      {exp.projects.map((project) => (
+                      {exp.projects?.map((project) => (
                         <div key={project.id} className="bg-gray-50 p-3 rounded">
                           <div className="flex justify-between items-center">
                             <h5 className="font-medium text-gray-700">{project?.name}</h5>
