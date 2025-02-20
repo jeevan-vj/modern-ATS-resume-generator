@@ -35,10 +35,17 @@ const initialData: ResumeData = {
 
 export default function ResumeBuilder() {
   const [resumeData, setResumeData] = useState<ResumeData>(initialData)
-  const [selectedTemplate, setSelectedTemplate] = useState<Template>(templates[0])
+  const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null)
   const [showPreview, setShowPreview] = useState(false)
   const parsedResume = useResumeStore(state => state.parsedResume)
   const clearParsedResume = useResumeStore(state => state.clearParsedResume)
+
+  useEffect(() => {
+    // Set initial template after component mounts
+    if (!selectedTemplate) {
+      setSelectedTemplate(templates[0])
+    }
+  }, [selectedTemplate])
 
   useEffect(() => {
     if (parsedResume) {
@@ -56,6 +63,12 @@ export default function ResumeBuilder() {
 
   const handleResumeChange = (newData: ResumeData) => {
     setResumeData(newData)
+  }
+
+  if (!selectedTemplate) {
+    return <div className="min-h-screen grid place-items-center">
+      <div className="animate-pulse bg-gray-100 h-20 w-96 rounded-lg" />
+    </div>
   }
 
   return (
