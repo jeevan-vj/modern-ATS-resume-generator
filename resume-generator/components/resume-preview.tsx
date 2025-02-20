@@ -15,23 +15,22 @@ export function ResumePreview({ data, template, onChange }: { data: ResumeData; 
   const [scale, setScale] = useState(1)
   const [autoScale, setAutoScale] = useState(true)
 
-  // Add auto-scaling effect
   useEffect(() => {
     if (!autoScale || !resumeRef.current) return
     
     const updateScale = () => {
       const containerWidth = resumeRef.current?.parentElement?.clientWidth || 0
       const contentWidth = 794 // A4 width in pixels
-      if (containerWidth < contentWidth) {
-        setScale(containerWidth / contentWidth)
-      } else {
-        setScale(1)
-      }
+      const newScale = Math.min(1, (containerWidth - 32) / contentWidth) // Account for padding
+      setScale(newScale)
     }
 
     updateScale()
-    window.addEventListener('resize', updateScale)
-    return () => window.removeEventListener('resize', updateScale)
+    const observer = new ResizeObserver(updateScale)
+    if (resumeRef.current?.parentElement) {
+      observer.observe(resumeRef.current.parentElement)
+    }
+    return () => observer.disconnect()
   }, [autoScale])
 
   const downloadResume = () => {
@@ -147,15 +146,16 @@ export function ResumePreview({ data, template, onChange }: { data: ResumeData; 
       
       <div className="flex-1 overflow-auto bg-gray-100 p-4 sm:p-8">
         <div 
-          className="mx-auto bg-white shadow-lg transition-transform duration-200"
+          className="mx-auto bg-white shadow-lg will-change-transform"
           style={{
             width: '210mm',
             maxWidth: '100%',
             transform: `scale(${scale})`,
-            transformOrigin: 'top center'
+            transformOrigin: 'top center',
+            minHeight: autoScale ? `${842 * scale}px` : '842px', // A4 height
           }}
         >
-          <div ref={resumeRef} className="p-8 sm:p-12">
+          <div ref={resumeRef} className="p-4 sm:p-8 md:p-12">
             {template.render(data, handleUpdate)}
           </div>
         </div>

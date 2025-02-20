@@ -14,6 +14,14 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  minimumScale: 1,
+  viewportFit: 'cover',
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://your-domain.com'),
   title: {
@@ -69,13 +77,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-full overflow-x-hidden`}
       >
-        <div className="flex min-h-screen flex-col">
+        <div className="flex min-h-screen flex-col w-full">
           <main className="flex-1 w-full">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 max-w-full">
               {children}
             </div>
           </main>

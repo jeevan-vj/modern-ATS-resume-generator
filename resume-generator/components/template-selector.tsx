@@ -54,15 +54,15 @@ export function TemplateSelector({ selectedTemplate, onSelectTemplate }: Templat
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-2 sm:px-4">
-      <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Choose Your Template</h2>
+    <div className="w-full max-w-full overflow-hidden">
+      <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 px-2">Choose Your Template</h2>
       <RadioGroup 
         value={selectedTemplate.id} 
         onValueChange={(value) => onSelectTemplate(templates.find(t => t.id === value)!)}
         className="w-full"
       >
-        <div className="relative bg-gray-50/50 -mx-2 sm:-mx-6 px-2 sm:px-6 py-4 sm:py-8">
-          <div className="relative max-w-4xl mx-auto">
+        <div className="relative bg-gray-50/50 px-2 sm:px-6 py-4 sm:py-8">
+          <div className="relative max-w-[100vw] mx-auto">
             {!isMobile && showLeftScroll && (
               <Button
                 variant="outline"
@@ -76,49 +76,36 @@ export function TemplateSelector({ selectedTemplate, onSelectTemplate }: Templat
             
             <div 
               ref={scrollContainerRef}
-              className="flex overflow-x-auto scrollbar-hidden gap-3 sm:gap-6 scroll-smooth snap-x snap-mandatory touch-pan-x"
+              className="flex overflow-x-auto scrollbar-hidden gap-3 sm:gap-6 scroll-smooth snap-x snap-mandatory touch-pan-x pb-6"
+              style={{ WebkitOverflowScrolling: 'touch' }}
             >
               {templates.map((template) => (
                 <motion.div 
                   key={template.id} 
-                  className={`flex-none w-[280px] sm:w-72 snap-start ${
-                    selectedTemplate.id === template.id 
-                      ? 'ring-2 ring-blue-500 bg-white' 
-                      : 'hover:bg-white'
-                  }`}
+                  className="flex-none w-[260px] sm:w-72 snap-start"
                   whileHover={!isMobile ? { scale: 1.02 } : undefined}
                   whileTap={!isMobile ? { scale: 0.98 } : undefined}
-                  onClick={() => onSelectTemplate(template)}
                 >
-                  <div className="group relative flex flex-col p-4 sm:p-6 rounded-xl border border-gray-200 cursor-pointer transition-all duration-200 hover:shadow-lg bg-white touch-manipulation">
+                  <div className={`group relative flex flex-col p-3 sm:p-4 rounded-xl border transition-all duration-200 bg-white touch-manipulation ${
+                    selectedTemplate.id === template.id 
+                      ? 'ring-2 ring-blue-500 border-transparent' 
+                      : 'border-gray-200 hover:border-blue-200'
+                  }`}>
                     <RadioGroupItem value={template.id} id={template.id} className="sr-only" />
-                    <div className="aspect-[3/4] w-full bg-gray-100 rounded-lg mb-3 sm:mb-4 overflow-hidden">
+                    <div className="aspect-[3/4] w-full bg-gray-50 rounded-lg mb-3 sm:mb-4 overflow-hidden">
                       <Image
                         src={template.previewImage}
                         alt={`${template.name} template preview`}
                         width={400}
                         height={533}
                         className="w-full h-full object-cover"
-                        priority={template.id === 'modern' || template.id === 'professional'}
+                        priority={template.id === selectedTemplate.id}
                       />
                     </div>
                     <Label htmlFor={template.id} className="block">
-                      <h3 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2">{template.name}</h3>
-                      <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">{
-                        template.id === 'modern' ? 'Creative and contemporary design for digital professionals' :
-                        template.id === 'professional' ? 'Traditional format for corporate positions' :
-                        template.id === 'minimalist' ? 'Clean and focused on essential information' :
-                        template.id === 'executive' ? 'Elegant design for senior leadership roles' :
-                        template.id === 'compact' ? 'Space-efficient for extensive experience' :
-                        template.id === 'timeline' ? 'Visual progression of your career journey' :
-                        template.id === 'chronological' ? 'ATS-friendly format emphasizing work history' :
-                        template.id === 'skills-based' ? 'Highlight technical expertise and achievements' :
-                        'Template preview'
-                      }</p>
+                      <h3 className="text-sm sm:text-base font-semibold mb-0.5 sm:mb-1">{template.name}</h3>
+                      <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">{template.description}</p>
                     </Label>
-                    <div className={`absolute inset-0 rounded-xl transition-opacity ${
-                      selectedTemplate.id === template.id ? 'bg-blue-500/10' : 'bg-transparent'
-                    }`} />
                   </div>
                 </motion.div>
               ))}
@@ -135,8 +122,7 @@ export function TemplateSelector({ selectedTemplate, onSelectTemplate }: Templat
               </Button>
             )}
 
-            {/* Mobile-friendly scroll indicator */}
-            <div className="absolute -bottom-4 sm:-bottom-6 left-1/2 -translate-x-1/2 flex gap-1">
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
               {Array.from({ length: templates.length }).map((_, index) => (
                 <div
                   key={index}
