@@ -37,6 +37,8 @@ export default function ResumeBuilder() {
   const [resumeData, setResumeData] = useState<ResumeData>(initialData)
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null)
   const [showPreview, setShowPreview] = useState(false)
+  const [showSampleHint, setShowSampleHint] = useState(true)
+  const [isSampleSectionFocused, setIsSampleSectionFocused] = useState(false)
   const parsedResume = useResumeStore(state => state.parsedResume)
   const clearParsedResume = useResumeStore(state => state.clearParsedResume)
 
@@ -55,6 +57,8 @@ export default function ResumeBuilder() {
   }, [parsedResume, clearParsedResume])
 
   const handleSampleSelect = (index: string) => {
+    setShowSampleHint(false)
+    setIsSampleSectionFocused(true)
     setResumeData({
       ...sampleResumes[parseInt(index)],
       colorTheme: initialData.colorTheme
@@ -90,25 +94,47 @@ export default function ResumeBuilder() {
               selectedTemplate={selectedTemplate}
               onSelectTemplate={setSelectedTemplate}
             />
-            <div className="flex flex-col sm:flex-row gap-2 justify-between">
-              <div className="w-full sm:w-auto min-w-[200px]">
-                <h2 className="text-lg font-semibold mb-2">Sample Resumes</h2>
-                <Select onValueChange={handleSampleSelect}>
-                  <SelectTrigger className="w-full sm:w-[250px]">
-                    <SelectValue placeholder="Select a sample resume" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {sampleResumes.map((resume, index) => (
-                      <SelectItem key={index} value={index.toString()}>
-                        {resume.personalInfo.name} - {resume.workExperience[0].jobTitle}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+            <div 
+              className={`${showSampleHint && !isSampleSectionFocused ? 'animate-single-bounce' : ''} transition-all duration-300`}
+              onFocus={() => {
+                setIsSampleSectionFocused(true)
+                setShowSampleHint(false)
+              }}
+              onMouseEnter={() => {
+                setIsSampleSectionFocused(true)
+                setShowSampleHint(false)
+              }}
+            >
+              <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg border border-blue-200 shadow-sm hover:shadow-md transition-all">
+                <div className="flex flex-col sm:flex-row gap-4 justify-between">
+                  <div className="w-full">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h2 className="text-xl font-semibold text-blue-700">🚀 Quick Start with Sample Resumes</h2>
+                      {showSampleHint && !isSampleSectionFocused && <span className="animate-pulse text-blue-500">✨ New</span>}
+                    </div>
+                    <p className="text-sm text-blue-600 mb-4">Get a head start with our professionally crafted sample resumes - just select and customize!</p>
+                    <Select onValueChange={handleSampleSelect}>
+                      <SelectTrigger className={`w-full ${showSampleHint && !isSampleSectionFocused ? 'ring-2 ring-blue-400 ring-offset-2' : ''}`}>
+                        <SelectValue placeholder="📄 Choose a sample resume to get started" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {sampleResumes.map((resume, index) => (
+                          <SelectItem key={index} value={index.toString()}>
+                            {resume.personalInfo.name} - {resume.workExperience[0].jobTitle}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <Button 
+                    onClick={() => setResumeData(initialData)} 
+                    variant="outline" 
+                    className="whitespace-nowrap h-10 mt-auto"
+                  >
+                    Clear Resume
+                  </Button>
+                </div>
               </div>
-              <Button onClick={() => setResumeData(initialData)} variant="outline" className="whitespace-nowrap">
-                Clear Resume
-              </Button>
             </div>
             <ResumeForm data={resumeData} onChange={handleResumeChange} />
           </div>

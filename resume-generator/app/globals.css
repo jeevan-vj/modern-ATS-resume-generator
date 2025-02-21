@@ -234,3 +234,16 @@ body {
 .text-gold {
   color: gold;
 }
+
+@keyframes single-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-single-bounce {
+  animation: single-bounce 2s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
+}
