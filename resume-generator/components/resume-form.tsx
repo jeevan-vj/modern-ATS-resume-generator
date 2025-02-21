@@ -110,16 +110,6 @@ function SectionWrapper({
   )
 }
 
-// Add keyframes for shimmer animation
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
-`;
-document.head.appendChild(style);
-
 export function ResumeForm({ data, onChange }: { 
   data: ResumeData
   onChange: (data: ResumeData) => void 

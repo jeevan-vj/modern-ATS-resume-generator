@@ -247,3 +247,8 @@ body {
 .animate-single-bounce {
   animation: single-bounce 2s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
 }
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
