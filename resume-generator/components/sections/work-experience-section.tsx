@@ -53,9 +53,6 @@ export function WorkExperienceSection({
     const newWorkExperience = [...data.workExperience]
     newWorkExperience[index] = { ...newWorkExperience[index], ...workExp }
     onChange({ ...data, workExperience: newWorkExperience })
-    if (workExp.description !== undefined) {
-      setRichTextContent(workExp.description)
-    }
   }
 
   const addProject = (workExpIndex: number) => {
