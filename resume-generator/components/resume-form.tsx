@@ -37,35 +37,88 @@ function SectionWrapper({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className="w-full"
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="w-full perspective-1000"
     >
-      <Collapsible defaultOpen={defaultOpen} className="border rounded-lg w-full">
-        <CollapsibleTrigger className="px-4 py-3 w-full text-left bg-gray-50 hover:bg-gray-100 rounded-t-lg">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <span className="text-lg font-semibold">{title}</span>
+      <Collapsible defaultOpen={defaultOpen} className="border border-gray-200 rounded-lg w-full shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden">
+        <CollapsibleTrigger className="group px-4 py-3 w-full text-left bg-gradient-to-r from-gray-50 to-white hover:from-gray-100 hover:to-gray-50 rounded-t-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-opacity-50">
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <span className="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 group-hover:to-gray-800 transition-colors duration-200">{title}</span>
+              <motion.svg 
+                className="w-4 h-4 text-gray-500" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                animate={{ rotate: defaultOpen ? 180 : 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </motion.svg>
+            </div>
             {showScore && (
-              <span className="text-sm font-medium text-gray-500">
+              <motion.span 
+                className={`text-sm font-medium ${
+                  completionScore >= 80 ? 'text-green-600' : 
+                  completionScore >= 50 ? 'text-yellow-600' : 
+                  'text-red-600'
+                }`}
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
                 {Math.round(completionScore)}%
-              </span>
+              </motion.span>
             )}
           </div>
           {showScore && (
-            <ProgressIndicator 
-              value={completionScore} 
-              size="sm" 
-              color={getScoreColor(completionScore)}
-              showValue={false}
-            />
+            <div className="mt-2 relative">
+              <ProgressIndicator 
+                value={completionScore} 
+                size="sm" 
+                color={getScoreColor(completionScore)}
+                showValue={false}
+                className="bg-gray-100 overflow-hidden"
+              />
+              <div 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"
+                style={{
+                  backgroundSize: '200% 100%',
+                  animation: 'shimmer 2s infinite'
+                }}
+              />
+            </div>
           )}
+          <div className="absolute inset-0 transition-opacity duration-300 pointer-events-none opacity-0 group-hover:opacity-100 bg-gradient-to-r from-blue-50/5 via-purple-50/5 to-pink-50/5" />
         </CollapsibleTrigger>
-        <CollapsibleContent className="p-2 sm:p-4">
-          {children}
+        <CollapsibleContent>
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="p-2 sm:p-4 bg-white relative overflow-hidden"
+          >
+            <div className="relative z-10">
+              {children}
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-50/5" />
+          </motion.div>
         </CollapsibleContent>
       </Collapsible>
     </motion.div>
   )
 }
+
+// Add keyframes for shimmer animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+`;
+document.head.appendChild(style);
 
 export function ResumeForm({ data, onChange }: { 
   data: ResumeData
