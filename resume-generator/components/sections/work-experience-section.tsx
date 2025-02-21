@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from 'react'
 import { WorkExperienceEnhancer } from '@/components/WorkExperienceEnhancer'
 import { RichTextEditor } from '@/components/RichTextEditor'
 import { Button } from "@/components/ui/button"
@@ -9,8 +10,6 @@ import type { ResumeData, WorkExperience, Project } from "@/lib/types"
 import { ProgressIndicator } from "../ui/progress-indicator"
 import { ProjectDescriptionEnhancer } from '../ProjectDescriptionEnhancer'
 import { ProjectAchievementsEnhancer } from '../ProjectAchievementsEnhancer'
-// import { ProjectDescriptionEnhancer } from './components/ProjectDescriptionEnhancer'
-// import { ProjectAchievementsEnhancer } from '@/components/ProjectAchievementsEnhancer'
 
 interface WorkExperienceSectionProps {
   data: ResumeData
@@ -54,6 +53,9 @@ export function WorkExperienceSection({
     const newWorkExperience = [...data.workExperience]
     newWorkExperience[index] = { ...newWorkExperience[index], ...workExp }
     onChange({ ...data, workExperience: newWorkExperience })
+    if (workExp.description !== undefined) {
+      setRichTextContent(workExp.description)
+    }
   }
 
   const addProject = (workExpIndex: number) => {
@@ -163,17 +165,18 @@ export function WorkExperienceSection({
                 />
               </div>
             </div>
+            
             <RichTextEditor
-              content={exp.description}
+              content={ exp.description?.replace(/^\d+\.\s*/, '')}
               onChange={(content) => updateWorkExperience(index, { description: content })}
             />
             <WorkExperienceEnhancer
               currentDescription={exp.description}
               jobTitle={exp.jobTitle}
               company={exp.company}
-              onSelect={(enhancedDescription) =>
+              onSelect={(enhancedDescription) => {
                 updateWorkExperience(index, { description: enhancedDescription })
-              }
+              }}
             />
           </div>
           <div className="space-y-2">
@@ -206,6 +209,7 @@ export function WorkExperienceSection({
                   <label htmlFor={`project-description-${project.id}`} className="block text-sm font-medium text-gray-700">
                     Project Description
                   </label>
+            
                   <RichTextEditor
                     content={project.description}
                     onChange={(content) => updateProject(index, projectIndex, { description: content })}

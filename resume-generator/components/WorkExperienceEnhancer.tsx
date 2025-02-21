@@ -64,7 +64,7 @@ export function WorkExperienceEnhancer({
             <div
               key={index}
               className="cursor-pointer rounded-md p-2 text-sm hover:bg-gray-100"
-              onClick={() => onSelect(suggestion)}
+              onClick={() => onSelect(suggestion?.replace(/^\d+\.\s*/, ''))}
             >
               {suggestion}
             </div>
